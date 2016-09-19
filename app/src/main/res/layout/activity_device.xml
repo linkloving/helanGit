@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg_gray"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!--苏州市民卡板块-->
+        <LinearLayout
+            android:id="@+id/bracelet_info_linear"
+            android:layout_width="fill_parent"
+            android:layout_height="120dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp">
+
+            <ImageView
+                android:id="@+id/device_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:src="@mipmap/device_bg"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Vitabit Tracter"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/m00_font_size_26pt" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_Mac"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="8dp"
+                    android:singleLine="true"
+                    android:text="MAC:B0:B4:48:CE:61:C8 "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/m00_font_size_20pt" />
+
+                <TextView
+                    android:id="@+id/tv_verson"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15px"
+                    android:text="@string/brace_version"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/m00_font_size_20pt" />
+
+                <TextView
+                    android:id="@+id/tv_power"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15px"
+                    android:text="@string/bracelet_battery"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/m00_font_size_20pt" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--分割线-->
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="4dp"
+            android:src="@mipmap/underline_more" />
+        <!--无声闹钟板块-->
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/LinearLayout_two"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4px"
+            android:gravity="center"
+            android:orientation="vertical">
+            <!--闹钟-->
+            <LinearLayout
+                android:id="@+id/activity_own_alarm"
+                android:layout_width="match_parent"
+                android:layout_height="144px"
+                android:background="@color/device_item_bg"
+                android:elevation="2dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="96px"
+                    android:layout_height="96px"
+                    android:src="@mipmap/device_clock" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="32px"
+                    android:gravity="center"
+                    android:text="@string/alarm_notify"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!--消息提醒-->
+            <LinearLayout
+                android:id="@+id/activity_own_incoming_tel"
+                android:layout_width="match_parent"
+                android:layout_height="144px"
+                android:layout_marginTop="2px"
+                android:background="@color/device_item_bg"
+                android:elevation="2dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="96px"
+                    android:layout_height="96px"
+                    android:src="@mipmap/device_notifications" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="32px"
+                    android:gravity="center"
+                    android:text="@string/xiaoxi_notify"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <!--久坐提醒-->
+            <LinearLayout
+                android:id="@+id/activity_own_longsit"
+                android:layout_width="match_parent"
+                android:layout_height="144px"
+                android:layout_marginTop="2px"
+                android:background="@color/device_item_bg"
+                android:elevation="2dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="96px"
+                    android:layout_height="96px"
+                    android:src="@mipmap/device_inactive" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="32px"
+                    android:gravity="center"
+                    android:text="@string/long_sit_text"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <!--勿扰模式-->
+            <LinearLayout
+                android:id="@+id/activity_own_control"
+                android:layout_width="match_parent"
+                android:layout_height="144px"
+                android:layout_marginTop="2px"
+                android:background="@color/device_item_bg"
+                android:elevation="2dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="96px"
+                    android:layout_height="96px"
+                    android:src="@mipmap/device_disturb" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="32px"
+                    android:gravity="center"
+                    android:text="@string/wurao_notify"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+            <!--省电管理-->
+            <LinearLayout
+                android:id="@+id/activity_own_power"
+                android:layout_width="match_parent"
+                android:layout_height="144px"
+                android:layout_marginTop="2px"
+                android:background="@color/device_item_bg"
+                android:elevation="2dp"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+                <!--layout_marginBottom 是为了有阴影效果-->
+
+                <ImageView
+                    android:layout_width="96px"
+                    android:layout_height="96px"
+                    android:src="@mipmap/device_power" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="32px"
+                    android:gravity="center"
+                    android:text="@string/power_setting"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!--固件更新和删除-->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/activity_own_update"
+                android:layout_width="fill_parent"
+                android:layout_height="144px"
+                android:paddingStart="@dimen/m00_btn_load_20_more_margin"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/firmware_update_title"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+            <!--分割线-->
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:paddingStart="@dimen/m00_btn_load_20_more_margin"
+                android:src="@mipmap/underline_more" />
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/activity_own_find"
+                android:layout_width="fill_parent"
+                android:layout_height="144px"
+                android:layout_marginTop="2px"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/find_device"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/activity_own_delete"
+                android:layout_width="match_parent"
+                android:layout_height="144px"
+                android:paddingStart="@dimen/m00_btn_load_20_more_margin"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/move_device_title"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+            <!--分割线-->
+            <ImageView
+                android:paddingStart="@dimen/m00_btn_load_20_more_margin"
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:src="@mipmap/underline_more" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

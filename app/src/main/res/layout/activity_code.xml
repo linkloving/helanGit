@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/app_blue"
+    tools:context="com.linkloving.helan.logic.UI.launch.codeLogin.CodeActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout_phone"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/alarm_setting_content_bg"
+        android:orientation="vertical"
+        android:padding="2dp">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/line_et_normal"
+            android:textColor="@color/gray_dark_for_text"
+            android:textSize="@dimen/m00_font_size_28pt"
+            android:text="@string/code_title"/>
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/editCode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingStart="20px"
+            android:background="@drawable/line_et_normal"
+            android:hint="@string/code_enter_hint"/>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/cancelbtn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/general_cancel"
+                android:textColor="@color/app_blue"
+                android:textSize="@dimen/m00_font_size_28pt"
+                android:background="@null"/>
+
+            <AutoCompleteTextView
+                android:layout_width="2px"
+                android:layout_height="match_parent"
+                android:background="@color/bg_gray"/>
+
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/sendbtn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/whats_up_history_add"
+                android:textColor="@color/app_blue"
+                android:textSize="@dimen/m00_font_size_28pt"
+                android:background="@null"/>
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/getcode_tv"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout_phone"
+        android:textColor="@color/white"
+        />
+
+</RelativeLayout>

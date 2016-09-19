@@ -1,0 +1,98 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+
+    }
+    compileSdkVersion 23
+    buildToolsVersion '23.0.2'
+    aaptOptions.cruncherEnabled = false //解决.9图片的问题
+    aaptOptions.useNewCruncher = false //解决.9图片的问题
+
+    defaultConfig {
+        applicationId "com.linkloving.helan"
+        minSdkVersion 18
+        targetSdkVersion 22
+        versionCode 6
+        versionName "1.0.6"
+    }
+
+    packagingOptions {  // 因为多个 jar 包里包含了同样的文件（NOTICE.txt），导致打包时因为担心相互覆盖问题而提示出错。
+                        // 尝试下在 app 下的 build.gradle 中的 android 部分增加一段配置
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']//指定lib库目录
+        }
+    }
+    buildTypes {
+        release {
+            // 是否进行混淆
+            minifyEnabled false
+            // 混淆文件的位置
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            jniDebuggable false
+            minifyEnabled false
+        }
+    }
+
+    // 移除lint检查的error
+    lintOptions {
+        abortOnError false
+    }
+
+    /**
+     * 签名设置
+     */
+    signingConfigs {
+        myConfigs {
+            storeFile file("efeelink.keystore")
+            keyAlias "efeelink_cer"
+            keyPassword "efeelink@sz"
+            storePassword "efeelink@sz"
+        }
+    }
+
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:unchecked"
+    }
+
+}
+repositories{
+
+    flatDir{
+        dirs 'libs'
+    }
+    maven { url "https://jitpack.io" }
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    compile 'com.jakewharton:butterknife:6.1.0'
+    compile 'com.zhy:autolayout:1.4.3'
+    compile 'com.yolanda.nohttp:nohttp:1.0.1'
+    compile 'com.jaeger.statusbaruitl:library:1.1.0'
+    compile 'com.google.code.gson:gson:2.4'
+    compile name: 'SMSSDK-2.1.2', ext: 'aar'
+    compile name: 'PullToRefreshLibrary', ext: 'aar'
+    compile project(':onkeyshare')
+    compile project(':ViewPagerIndicator')
+    compile files('libs/fastjson-1.1.35.jar')
+    compile files('libs/mta-sdk-1.0.0.jar')
+    compile files('libs/rtring_s_new_s_watch_utils.jar')
+    compile files('libs/EPC_common_android.jar')
+    compile files('libs/umeng-analytics-v5.6.7.jar')
+    compile files('libs/mpandroidchartlibrary-2-1-6.jar')
+    compile files('libs/linkloving_band.jar')
+    compile files('libs/commons-codec-1.5.jar')
+    compile project(':linkloving_ble4.0_lib')
+}
