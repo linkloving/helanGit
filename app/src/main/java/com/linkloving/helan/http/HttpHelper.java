@@ -276,7 +276,7 @@ public class HttpHelper {
         MyJsonRequest httpsRequest = new MyJsonRequest(CommParams.SERVER_CONTROLLER_URL_HELAN+"measurement");
         httpsRequest.addHeader("Authorization",token);
         MyLog.e("【NEW离线数据同步】","data："+JSON.toJSONString(vitBitDatas, SerializerFeature.DisableCircularReferenceDetect));
-        httpsRequest.setRequestBody(JSON.toJSONString(vitBitDatas).getBytes());
+        httpsRequest.setRequestBody(JSON.toJSONString(vitBitDatas, SerializerFeature.DisableCircularReferenceDetect).getBytes());
         return httpsRequest;
     }
 
