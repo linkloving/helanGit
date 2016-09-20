@@ -384,6 +384,7 @@ public class UserDeviceRecord extends TableRoot
 					}else{
 						Date date=ToolKits.stringToDate(startdata,ToolKits.DATE_FORMAT_YYYY_MM_DD_HH);
 						startLong = date.getTime()/1000 - TimeZoneHelper.getTimeZoneOffsetSecond();
+						MyLog.e(TAG,"TimeZoneHelper.getTimeZoneOffsetSecond()："+TimeZoneHelper.getTimeZoneOffsetSecond());
 						startdata= TimeUtils.getStartDateTime(startdata);
 						enddata =  TimeUtils.getStartDateTime(enddata);
 						where ="(("+ COLUMN_START_TIME+">='"+startdata+"' and "+COLUMN_START_TIME+"<'"+enddata+"') or "+COLUMN_START_TIME_UTC+" + "+COLUMN_DURATION+">"+startLong +" and "+COLUMN_START_TIME_UTC+"<"+startLong+")";
@@ -396,6 +397,15 @@ public class UserDeviceRecord extends TableRoot
 // 				order by start_time asc
 				// 查找此期间内的运动原始数据
 				srs = chatMessageTable.findHistoryChartsql(userId, where,false);
+				if(!is24H){
+					if(Long.parseLong(srs.get(0).getStart_time_utc()) < startLong){
+						long duration = Long.parseLong(srs.get(0).getDuration()) - (startLong-Long.parseLong(srs.get(0).getStart_time_utc()));
+						srs.get(0).setStart_time(startdata);
+						srs.get(0).setStart_time_utc(startLong+"");
+						srs.get(0).setDuration(duration+"");
+					}
+				}
+
 				return srs;
 			}
 			catch (Exception e)
