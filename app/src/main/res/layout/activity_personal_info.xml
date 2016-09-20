@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.linkloving.helan.logic.UI.personal.PersonalInfoActivity">
+    tools:context="com.VitaBit.VitaBit.logic.UI.personal.PersonalInfoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             android:layout_gravity="center_horizontal">
 
             <!-- 头像 -->
-            <com.linkloving.helan.logic.UI.main.CircleClipLayout
+            <com.VitaBit.VitaBit.logic.UI.main.CircleClipLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 >
@@ -33,7 +33,7 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/imageView" />
 
-            </com.linkloving.helan.logic.UI.main.CircleClipLayout>
+            </com.VitaBit.VitaBit.logic.UI.main.CircleClipLayout>
 
             <TextView
                 android:id="@+id/name_view"

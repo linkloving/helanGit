@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:ripple="http://schemas.android.com/apk/res-auto"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".logic.UI.main.PortalActivity"
+    tools:context="com.VitaBit.VitaBit.logic.UI.main.PortalActivity"
     tools:showIn="@layout/app_bar_portal">
 
     <!--未绑定-->
@@ -140,7 +140,7 @@
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
-                            <com.linkloving.helan.basic.CustomProgressBar
+                            <com.VitaBit.VitaBit.basic.CustomProgressBar
                                 android:id="@+id/progressBar_battery"
                                 android:layout_width="match_parent"
                                 android:layout_height="15dp"
@@ -197,7 +197,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_weight="1">
 
-                            <com.linkloving.helan.basic.CustomProgressBar
+                            <com.VitaBit.VitaBit.basic.CustomProgressBar
                                 android:id="@+id/progressBar_step"
                                 android:layout_width="match_parent"
                                 android:layout_height="15dp"
@@ -254,7 +254,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_weight="1">
 
-                            <com.linkloving.helan.basic.CustomProgressBar
+                            <com.VitaBit.VitaBit.basic.CustomProgressBar
                                 android:id="@+id/progressBar_sit"
                                 android:layout_width="match_parent"
                                 android:layout_height="15dp"
@@ -314,7 +314,7 @@
                             android:layout_marginStart="10dp"
                             android:layout_weight="1">
 
-                            <com.linkloving.helan.basic.CustomProgressBar
+                            <com.VitaBit.VitaBit.basic.CustomProgressBar
                                 android:id="@+id/progressBar_stand"
                                 android:layout_width="match_parent"
                                 android:layout_height="15dp"
@@ -377,7 +377,7 @@
                                 android:layout_marginStart="10dp"
                                 android:layout_weight="1">
 
-                                <com.linkloving.helan.basic.CustomProgressBar
+                                <com.VitaBit.VitaBit.basic.CustomProgressBar
                                     android:id="@+id/progressBar_sleep"
                                     android:layout_width="match_parent"
                                     android:layout_height="15dp"

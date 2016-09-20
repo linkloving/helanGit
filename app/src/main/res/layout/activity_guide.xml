@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.linkloving.helan.logic.UI.more.GuideActivity">
+    tools:context="com.VitaBit.VitaBit.logic.UI.more.GuideActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/guideViewPager"

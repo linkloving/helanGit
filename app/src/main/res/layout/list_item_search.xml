@@ -15,7 +15,7 @@
         android:padding="5dp"
         android:orientation="horizontal">
 
-    <com.linkloving.helan.logic.utils.CircleImageView
+    <com.VitaBit.VitaBit.logic.utils.CircleImageView
         android:id="@+id/user_head"
         android:layout_width="50dp"
         android:layout_height="50dp"

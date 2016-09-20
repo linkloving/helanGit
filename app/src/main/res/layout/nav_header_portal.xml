@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
     <!-- 头像 -->
-    <com.linkloving.helan.logic.utils.CircleImageView
+    <com.VitaBit.VitaBit.logic.utils.CircleImageView
         android:id="@+id/user_head"
         android:layout_gravity="center_horizontal"
         android:layout_width="168px"

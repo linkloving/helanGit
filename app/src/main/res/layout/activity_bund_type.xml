@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.linkloving.helan.logic.UI.main.BundTypeActivity">
+    tools:context="com.VitaBit.VitaBit.logic.UI.main.BundTypeActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/bundtype_recycler"

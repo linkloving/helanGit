@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/orange"
-    tools:context="com.linkloving.helan.logic.UI.launch.register.PassWordActivity">
+    tools:context="com.VitaBit.VitaBit.logic.UI.launch.register.PassWordActivity">
 
     <RelativeLayout
         android:id="@+id/layout"

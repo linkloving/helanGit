@@ -81,7 +81,7 @@
             android:layout_weight="1"
             android:orientation="vertical"
             >
-            <com.linkloving.helan.logic.UI.main.datachatactivity.DetailChartControl
+            <com.VitaBit.VitaBit.logic.UI.main.datachatactivity.DetailChartControl
                 android:id="@+id/activity_sport_data_detail_detailChartView1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -89,7 +89,7 @@
                 composition:deepSleepHeight="100dp"
                 composition:lightSleepHeight="50dp"
                 composition:lineWidth="1dp" >
-            </com.linkloving.helan.logic.UI.main.datachatactivity.DetailChartControl>
+            </com.VitaBit.VitaBit.logic.UI.main.datachatactivity.DetailChartControl>
 
 
         </LinearLayout>

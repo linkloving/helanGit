@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context="com.linkloving.helan.logic.UI.launch.CountryActivity">
+    tools:context="com.VitaBit.VitaBit.logic.UI.launch.CountryActivity">
 
     <!-- -->
-    <com.linkloving.helan.logic.UI.launch.country.CountryListView
+    <com.VitaBit.VitaBit.logic.UI.launch.country.CountryListView
         android:background="@android:color/white"
     android:id="@+id/countrylist"
     android:layout_width="match_parent"

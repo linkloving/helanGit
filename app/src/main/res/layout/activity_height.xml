@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.linkloving.helan.logic.UI.launch.register.HeightActivity">
+    tools:context="com.VitaBit.VitaBit.logic.UI.launch.register.HeightActivity">
 
     <TextView
         android:id="@+id/tv1"
@@ -64,7 +64,7 @@
                 android:layout_height="350dp"
                 android:background="@mipmap/registe_height"/>
 
-            <com.linkloving.helan.logic.UI.launch.view.ScaleHeightRulerView
+            <com.VitaBit.VitaBit.logic.UI.launch.view.ScaleHeightRulerView
                 android:id="@+id/scaleWheelView_height"
                 android:layout_width="45dp"
                 android:layout_height="280dp"

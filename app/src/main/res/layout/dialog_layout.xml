@@ -37,13 +37,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
 
-            <com.linkloving.helan.logic.UI.device.alarm.PickerView
+            <com.VitaBit.VitaBit.logic.UI.device.alarm.PickerView
                 android:id="@+id/hour_pv"
                 android:layout_width="80dp"
                 android:layout_height="160dp"
-                android:layout_marginRight="11dp"></com.linkloving.helan.logic.UI.device.alarm.PickerView>
+                android:layout_marginRight="11dp"></com.VitaBit.VitaBit.logic.UI.device.alarm.PickerView>
 
-            <com.linkloving.helan.logic.UI.device.alarm.PickerView
+            <com.VitaBit.VitaBit.logic.UI.device.alarm.PickerView
                 android:id="@+id/minute_pv"
                 android:layout_width="80dp"
                 android:layout_height="160dp"

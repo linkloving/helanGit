@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:id="@+id/layout_avatar"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.linkloving.helan.logic.UI.launch.register.UpdataAvatarActivity">
+    tools:context="com.VitaBit.VitaBit.logic.UI.launch.register.UpdataAvatarActivity">
 
     <TextView
         android:id="@+id/tv1"
@@ -17,7 +17,7 @@
         android:layout_marginTop="164px"
         android:textSize="@dimen/m00_font_size_28pt"/>
 
-    <com.linkloving.helan.logic.utils.CircleImageView
+    <com.VitaBit.VitaBit.logic.utils.CircleImageView
         android:id="@+id/user_head"
         android:layout_below="@id/tv1"
         android:layout_marginTop="200px"

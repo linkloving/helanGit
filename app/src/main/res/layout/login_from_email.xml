@@ -30,7 +30,7 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <!--手机号码-->
-                <com.linkloving.helan.logic.UI.launch.register.MyAutoCompleteTextView
+                <com.VitaBit.VitaBit.logic.UI.launch.register.MyAutoCompleteTextView
                     android:id="@+id/user_email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

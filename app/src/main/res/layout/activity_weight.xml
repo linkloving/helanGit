@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.linkloving.helan.logic.UI.main.datachatactivity.WeightActivity">
+    tools:context="com.VitaBit.VitaBit.logic.UI.main.datachatactivity.WeightActivity">
     <LinearLayout
         android:background="@color/step_data_gray"
         android:layout_width="match_parent"

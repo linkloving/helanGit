@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".logic.UI.main.PortalActivity">
+    tools:context="com.VitaBit.VitaBit.logic.UI.main.PortalActivity">
         <!--app:elevation="0dp"取消阴影效果-->
         <android.support.design.widget.AppBarLayout
             app:elevation="0dp"

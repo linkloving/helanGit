@@ -24,7 +24,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/m00_font_size_36pt" />
 
-        <com.linkloving.helan.logic.utils.CircleImageView
+        <com.VitaBit.VitaBit.logic.utils.CircleImageView
             android:id="@+id/ranking_activity_listview_item_imageView"
             android:layout_width="200px"
             android:layout_height="200px"

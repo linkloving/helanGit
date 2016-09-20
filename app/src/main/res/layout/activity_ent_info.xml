@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@mipmap/bg_set"
-    tools:context="com.linkloving.helan.logic.UI.personal.EntInfoActivity">
+    tools:context="com.VitaBit.VitaBit.logic.UI.personal.EntInfoActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"

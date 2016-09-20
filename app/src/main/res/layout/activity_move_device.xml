@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".logic.UI.device.movedevice.MoveDeviceActivity"
+    tools:context="com.VitaBit.VitaBit.logic.UI.device.movedevice.MoveDeviceActivity"
     tools:showIn="@layout/activity_move_device">
 
 </RelativeLayout>

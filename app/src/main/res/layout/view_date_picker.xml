@@ -4,19 +4,19 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal" >
 
-    <com.linkloving.helan.logic.UI.launch.view.wheelview.WheelView
+    <com.VitaBit.VitaBit.logic.UI.launch.view.wheelview.WheelView
         android:id="@+id/wheelview_dialog_year"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
-    <com.linkloving.helan.logic.UI.launch.view.wheelview.WheelView
+    <com.VitaBit.VitaBit.logic.UI.launch.view.wheelview.WheelView
         android:id="@+id/wheelview_dialog_month"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
-    <com.linkloving.helan.logic.UI.launch.view.wheelview.WheelView
+    <com.VitaBit.VitaBit.logic.UI.launch.view.wheelview.WheelView
         android:id="@+id/wheelview_dialog_day"
         android:layout_width="0dp"
         android:layout_height="match_parent"

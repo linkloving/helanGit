@@ -50,7 +50,7 @@
                     android:layout_marginBottom="20px"
                     android:layout_gravity="center_horizontal">
 
-                    <com.linkloving.helan.logic.UI.main.CircleClipLayout
+                    <com.VitaBit.VitaBit.logic.UI.main.CircleClipLayout
                         android:id="@+id/user_head_layout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -60,7 +60,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:contentDescription="@string/imageView" />
-                    </com.linkloving.helan.logic.UI.main.CircleClipLayout>
+                    </com.VitaBit.VitaBit.logic.UI.main.CircleClipLayout>
 
 
 

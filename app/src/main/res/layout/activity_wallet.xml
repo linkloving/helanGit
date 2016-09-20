@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.linkloving.helan.logic.UI.main.pay.WalletActivity">
+    tools:context="com.VitaBit.VitaBit.logic.UI.main.pay.WalletActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

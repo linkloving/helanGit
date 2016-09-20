@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.linkloving.helan.logic.UI.launch.register.WeightActivity">
+    tools:context="com.VitaBit.VitaBit.logic.UI.launch.register.WeightActivity">
 
     <TextView
         android:id="@+id/tv1"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:src="@mipmap/registe_weight"/>
 
-    <com.linkloving.helan.logic.UI.launch.view.ScaleRulerView
+    <com.VitaBit.VitaBit.logic.UI.launch.view.ScaleRulerView
         android:id="@+id/scaleWheelView_weight"
         android:layout_width="match_parent"
         android:layout_height="45dp"

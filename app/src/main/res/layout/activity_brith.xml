@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.linkloving.helan.logic.UI.launch.register.BrithActivity">
+    tools:context="com.VitaBit.VitaBit.logic.UI.launch.register.BrithActivity">
 
     <TextView
         android:id="@+id/tv1"
@@ -27,7 +27,7 @@
             android:layout_centerVertical="true"
             android:background="@mipmap/birthday"/>
 
-        <com.linkloving.helan.logic.UI.launch.view.DatePicker
+        <com.VitaBit.VitaBit.logic.UI.launch.view.DatePicker
             android:id="@+id/date_picker"
             android:layout_gravity="center"
             android:layout_marginLeft="45px"
