@@ -265,7 +265,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             @Override
             public void run() {
                 Message ms = new Message();
-                mScrollViewRefreshingHandler.sendMessageDelayed(ms, 20000);
+                mScrollViewRefreshingHandler.sendMessageDelayed(ms, 10000);
             }
         });
 
@@ -273,7 +273,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             @Override
             public void back2Foreground() {
                 if(!CommonUtils.isStringEmpty(userEntity.getDeviceEntity().getLast_sync_device_id())){
-                    mScrollView.autoRefresh();
+                    BleService.getInstance(PortalActivity.this).syncAllDeviceInfo(PortalActivity.this);
                 }
             }
         });

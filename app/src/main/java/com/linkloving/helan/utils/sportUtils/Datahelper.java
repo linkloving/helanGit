@@ -229,15 +229,15 @@ public class Datahelper {
     }
     //计算当前的时间的Duration,当天开始时间,Duration是0 ,最后的时间Duration是24*3600
     private int getDuration(String stringDate){
-//        MyLog.i(TAG, "传来计算的时间:" + stringDate);
+        MyLog.i(TAG, "传来计算的时间:" + stringDate);
         String s=TimeZoneHelper.__getLocalTimeFromUTC0(ToolKits.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS, stringDate);
-//        MyLog.i(TAG, "计算的时间:" + s);
+        MyLog.i(TAG, "计算的时间:" + s);
         Date date1=ToolKits.stringToDate(s,ToolKits.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS);
         SimpleDateFormat s1=new SimpleDateFormat("HH");
         SimpleDateFormat s2=new SimpleDateFormat("mm");
         SimpleDateFormat s3=new SimpleDateFormat("ss");
         int duration=Integer.parseInt(s1.format(date1))*3600+Integer.parseInt(s2.format(date1))*60+Integer.parseInt(s3.format(date1));
-//        MyLog.i(TAG,"duration:"+duration+"       "+stringDate);
+        MyLog.i(TAG,"duration:"+duration+"       "+stringDate);
         return duration;
     }
 
@@ -323,6 +323,7 @@ public class Datahelper {
                 break;
 
             case TYPE_3H:  //一天画分成36（3*60 再除以 5）个时间段
+                MyLog.e(TAG,"传尽时间后："+timeStr);
                 Date date3H=ToolKits.stringToDate(timeStr,ToolKits.DATE_FORMAT_YYYY_MM_DD_HH);
                 SimpleDateFormat s2=new SimpleDateFormat("HH");
                 MyLog.i(TAG,"传尽时间后："+Integer.parseInt(s2.format(date3H)));
