@@ -40,6 +40,7 @@ public class BleService extends Service {
     private static final String TAG = "BleService";
 
 
+
     public static final int REQUEST_ENABLE_BT = 0x10;
 
     public static final String BLE_STATE_SUCCESS = "com.ble.state";
