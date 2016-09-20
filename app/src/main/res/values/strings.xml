@@ -137,6 +137,7 @@
     <!--密码和用户名不匹配-->
     <string name="login_error4">Passwords and user names do not match</string>
     <!--网络错误,请检查网络后重新登录-->
+    <string name="codeisincorrect">code is incorrect or expired</string>
     <string name="login_error5">Network error, please check the network after re login</string>
     <!--号码输入不正确-->
     <string name="login_error6">Number entered is not correct</string>

@@ -30,6 +30,7 @@
             android:text="@string/code_title"/>
 
         <android.support.v7.widget.AppCompatEditText
+            android:inputType="number"
             android:id="@+id/editCode"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

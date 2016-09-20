@@ -7,6 +7,7 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.Html;
 import android.view.View;
+import android.widget.Toast;
 
 import com.linkloving.helan.IntentFactory;
 import com.linkloving.helan.R;
@@ -88,7 +89,7 @@ public class CodeActivity extends AutoLayoutActivity implements ICodeView{
 
     @Override
     public void showFailMessage() {
-
+        Toast.makeText(CodeActivity.this,R.string.codeisincorrect, Toast.LENGTH_SHORT).show();
     }
 
     @Override
