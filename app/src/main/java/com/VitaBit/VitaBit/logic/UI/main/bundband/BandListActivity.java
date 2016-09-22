@@ -23,7 +23,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.VitaBit.VitaBit.R;
 import com.VitaBit.VitaBit.basic.toolbar.ToolBarActivity;
+import com.VitaBit.VitaBit.utils.MyToast;
 import com.VitaBit.VitaBit.utils.ToolKits;
 import com.example.android.bluetoothlegatt.BLEHandler;
 import com.example.android.bluetoothlegatt.BLEListHandler;
@@ -34,12 +36,15 @@ import com.VitaBit.VitaBit.BleService;
 import com.VitaBit.VitaBit.MyApplication;
 import com.VitaBit.VitaBit.logic.UI.main.materialmenu.CommonAdapter;
 import com.VitaBit.VitaBit.utils.logUtils.MyLog;
+import com.example.android.bluetoothlegatt.utils.ToastUtil;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static com.VitaBit.VitaBit.R.string.portal_main_bound_failed_nocharge;
 
 /**
  * Created by zkx on 2016/4/13.
@@ -87,6 +92,7 @@ public class BandListActivity extends ToolBarActivity {
         provider = BleService.getInstance(this).getCurrentHandlerProvider();
         if (provider != null)
             provider.setBleProviderObserver(null);
+
     }
 
     @Override
@@ -115,9 +121,11 @@ public class BandListActivity extends ToolBarActivity {
                     if (v.mac.equals(device.getAddress()))
                         return;
                 }
+
                 DeviceVO vo = new DeviceVO();
                 vo.mac = device.getAddress();
                 vo.name = device.getName();
+//                MyLog.e(TAG,"Modlename是+++++"+vo.name);
                 vo.bledevice = device;
                 macList.add(vo);
                 mAdapter.notifyDataSetChanged();
@@ -164,6 +172,7 @@ public class BandListActivity extends ToolBarActivity {
                 if (progressDialog != null && !progressDialog.isShowing()){
                     progressDialog.setMessage(getString(com.VitaBit.VitaBit.R.string.portal_main_state_connecting));
                     progressDialog.show();
+                    MyLog.e(TAG,"点击的Modlename是+++++"+macList.get(index).name);
                 }
 
             }
@@ -339,6 +348,7 @@ public class BandListActivity extends ToolBarActivity {
                     timer.cancel();
                 dialog_bound.dismiss();
             }
+            ToastUtil.showMyToast(BandListActivity.this,getString(R.string.portal_main_bound_failed_nocharge));
             setResult(RESULT_NOCHARGE);
             finish();
         }
@@ -382,6 +392,7 @@ public class BandListActivity extends ToolBarActivity {
         @Override
         public void updateFor_BoundSucess() {
             provider.SetDeviceTime(BandListActivity.this);
+            BleService.getInstance(BandListActivity.this).syncAllDeviceInfo(BandListActivity.this);
         }
 
         @Override
@@ -508,6 +519,7 @@ public class BandListActivity extends ToolBarActivity {
     class DeviceVO {
         public String mac;
         public String name;
+        public int device_type ;
         public BluetoothDevice bledevice;
 
     }

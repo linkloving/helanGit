@@ -108,6 +108,8 @@ public class BLEListActivity extends ToolBarActivity {
                 DeviceVO vo = new DeviceVO();
                 vo.mac = device.getAddress();
                 vo.name = device.getName();
+                MyLog.e(TAG,"Modlename是+++++"+vo.name);
+
                 vo.bledevice = device;
                 macList.add(vo);
                 mAdapter.notifyDataSetChanged();

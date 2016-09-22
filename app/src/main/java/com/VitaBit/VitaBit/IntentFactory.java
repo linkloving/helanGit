@@ -36,6 +36,7 @@ import com.VitaBit.VitaBit.logic.UI.launch.register.UpdataAvatarActivity;
 import com.VitaBit.VitaBit.logic.UI.launch.register.WeightActivity;
 import com.VitaBit.VitaBit.logic.UI.main.BundTypeActivity;
 import com.VitaBit.VitaBit.logic.UI.main.PortalActivity;
+import com.VitaBit.VitaBit.logic.UI.main.bundband.BandListActivity;
 import com.VitaBit.VitaBit.logic.UI.main.bundband.BundBandActivity;
 import com.VitaBit.VitaBit.logic.UI.main.datachatactivity.SitDataActivity;
 import com.VitaBit.VitaBit.logic.UI.main.datachatactivity.StandDataActivity;
@@ -371,6 +372,11 @@ public class IntentFactory {
         Intent intent = new Intent(context, BundBandActivity.class);
         return intent;
     }
+    public static Intent startActivityBandList(Context context) {
+        Intent intent = new Intent(context, BandListActivity.class);
+        return intent;
+    }
+
 
     public static void startBundTypeActivity(Activity activity) {
         Intent intent = new Intent(activity, BundTypeActivity.class);

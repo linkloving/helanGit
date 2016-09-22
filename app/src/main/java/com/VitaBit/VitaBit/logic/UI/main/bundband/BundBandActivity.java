@@ -108,6 +108,7 @@ public class BundBandActivity extends ToolBarActivity {
                 DeviceVO vo = new DeviceVO();
                 vo.mac = device.getAddress();
                 vo.name = device.getName();
+                MyLog.e(TAG,"device.getName是"+device.getName());
                 vo.bledevice = device;
                 macList.add(vo);
                 mAdapter.notifyDataSetChanged();

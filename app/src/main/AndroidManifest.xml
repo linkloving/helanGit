@@ -280,7 +280,10 @@
             android:name="com.VitaBit.VitaBit.logic.UI.main.bundband.BundBandActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar" />
-
+            <activity android:name=".logic.UI.main.bundband.BandListActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppThemeNoActionBar"
+                ></activity>
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"

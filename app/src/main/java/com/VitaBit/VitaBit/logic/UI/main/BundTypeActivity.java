@@ -45,7 +45,7 @@ public class BundTypeActivity extends ToolBarActivity {
     }
 
     @Override
-    protected void getIntentforActivity() {
+        protected void getIntentforActivity() {
 
     }
 

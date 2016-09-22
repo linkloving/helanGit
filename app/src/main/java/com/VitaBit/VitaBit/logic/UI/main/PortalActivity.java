@@ -509,7 +509,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     void unBund(View view) {
         if (MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider() == null ||
                 CommonUtils.isStringEmpty(MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id())) {
-            startActivityForResult(IntentFactory.startActivityBundBand(PortalActivity.this),CommParams.REQUEST_CODE_BOUND_BAND);
+            startActivityForResult(IntentFactory.startActivityBandList(PortalActivity.this),CommParams.REQUEST_CODE_BOUND_BAND);
 //            showBundDialog();
         }
     }
