@@ -36,6 +36,7 @@ import android.widget.Toast;
 
 import com.VitaBit.VitaBit.CommParams;
 import com.VitaBit.VitaBit.ILifecycle;
+import com.VitaBit.VitaBit.R;
 import com.VitaBit.VitaBit.db.sport.UserDeviceRecord;
 import com.VitaBit.VitaBit.db.summary.DaySynopicTable;
 import com.VitaBit.VitaBit.http.basic.CallServer;
@@ -44,6 +45,9 @@ import com.VitaBit.VitaBit.http.basic.NoHttpRuquestFactory;
 import com.VitaBit.VitaBit.http.data.DataFromServer;
 import com.VitaBit.VitaBit.logic.UI.device.DeviceActivity;
 import com.VitaBit.VitaBit.logic.UI.device.FirmwareDTO;
+import com.VitaBit.VitaBit.logic.UI.main.bundband.BandListActivity;
+import com.VitaBit.VitaBit.logic.UI.main.bundband.BandListActivity3;
+import com.VitaBit.VitaBit.logic.UI.main.bundband.bundbandstep1;
 import com.VitaBit.VitaBit.logic.UI.main.materialmenu.MenuNewAdapter;
 import com.VitaBit.VitaBit.logic.dto.Profile;
 import com.VitaBit.VitaBit.logic.dto.UserEntity;
@@ -509,10 +513,34 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     void unBund(View view) {
         if (MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider() == null ||
                 CommonUtils.isStringEmpty(MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id())) {
-            startActivityForResult(IntentFactory.startActivityBandList(PortalActivity.this),CommParams.REQUEST_CODE_BOUND_BAND);
+//            startActivityForResult(IntentFactory.startActivityBandList(PortalActivity.this),CommParams.REQUEST_CODE_BOUND_BAND);
+      chooseBundDevice();
 //            showBundDialog();
         }
     }
+    private void chooseBundDevice(){
+        final AlertDialog.Builder  builder= new AlertDialog.Builder(PortalActivity.this);
+        builder.setItems(getResources().getStringArray(R.array.ItemArray), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case 0:
+                        Intent intent = new Intent(PortalActivity.this, BandListActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        Intent intent1 = new Intent(PortalActivity.this, BandListActivity3.class);
+                        startActivity(intent1);
+                        break;
+                }
+            }
+        });
+        builder.show();
+    }
+
+
+
+
     @OnClick(com.VitaBit.VitaBit.R.id.linear_sit)
     void toDistance(View view) {
         Intent intent = IntentFactory.cteate_SitActivityIntent(PortalActivity.this);

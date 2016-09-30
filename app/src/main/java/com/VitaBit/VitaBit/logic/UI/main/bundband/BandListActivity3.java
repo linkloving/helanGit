@@ -23,19 +23,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.VitaBit.VitaBit.BleService;
+import com.VitaBit.VitaBit.MyApplication;
 import com.VitaBit.VitaBit.R;
 import com.VitaBit.VitaBit.basic.toolbar.ToolBarActivity;
-import com.VitaBit.VitaBit.utils.MyToast;
+import com.VitaBit.VitaBit.logic.UI.main.materialmenu.CommonAdapter;
 import com.VitaBit.VitaBit.utils.ToolKits;
+import com.VitaBit.VitaBit.utils.logUtils.MyLog;
 import com.example.android.bluetoothlegatt.BLEHandler;
 import com.example.android.bluetoothlegatt.BLEListHandler;
 import com.example.android.bluetoothlegatt.BLEListProvider;
 import com.example.android.bluetoothlegatt.BLEProvider;
 import com.example.android.bluetoothlegatt.proltrol.dto.LPDeviceInfo;
-import com.VitaBit.VitaBit.BleService;
-import com.VitaBit.VitaBit.MyApplication;
-import com.VitaBit.VitaBit.logic.UI.main.materialmenu.CommonAdapter;
-import com.VitaBit.VitaBit.utils.logUtils.MyLog;
 import com.example.android.bluetoothlegatt.utils.ToastUtil;
 
 import java.text.MessageFormat;
@@ -44,14 +43,12 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.VitaBit.VitaBit.R.string.portal_main_bound_failed_nocharge;
-
 /**
  * Created by zkx on 2016/4/13.
  */
-public class BandListActivity extends ToolBarActivity {
+public class BandListActivity3 extends ToolBarActivity {
 
-    public static final String TAG = BandListActivity.class.getSimpleName();
+    public static final String TAG = BandListActivity3.class.getSimpleName();
     private BLEListProvider listProvider;
     private BLEProvider provider;
     private BLEListHandler handler;
@@ -109,13 +106,13 @@ public class BandListActivity extends ToolBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(com.VitaBit.VitaBit.R.layout.activity_blelist);
+        setContentView(R.layout.activity_blelist);
         progressDialog = new ProgressDialog(this);
 
         observerAdapter = new BLEProviderObserver();
         provider = BleService.getInstance(this).getCurrentHandlerProvider();
         provider.setBleProviderObserver(observerAdapter);
-        handler = new BLEListHandler(BandListActivity.this) {
+        handler = new BLEListHandler(BandListActivity3.this) {
             @Override
             protected void handleData(BluetoothDevice device) {
                 for (DeviceVO v : macList) {
@@ -146,14 +143,14 @@ public class BandListActivity extends ToolBarActivity {
     @Override
     protected void initView() {
         HideButtonRight(false);
-        SetBarTitleText(getString(com.VitaBit.VitaBit.R.string.bound_ble_list));
+        SetBarTitleText(getString(R.string.bound_ble_list));
         Button btn = getRightButton();
         ViewGroup.LayoutParams layoutParams = btn.getLayoutParams();
         layoutParams.width = 200;
         layoutParams.height = 200;
         btn.setLayoutParams(layoutParams);
-        btn.setText(getString(com.VitaBit.VitaBit.R.string.bound_ble_refresh));
-        btn.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.white));
+        btn.setText(getString(R.string.bound_ble_refresh));
+        btn.setTextColor(getResources().getColor(R.color.white));
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,7 +159,7 @@ public class BandListActivity extends ToolBarActivity {
                 listProvider.scanDeviceList();
             }
         });
-        mListView = (ListView) findViewById(com.VitaBit.VitaBit.R.id.ble_list);
+        mListView = (ListView) findViewById(R.id.ble_list);
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -172,7 +169,7 @@ public class BandListActivity extends ToolBarActivity {
                 provider.connect_mac(macList.get(index).mac);
 
                 if (progressDialog != null && !progressDialog.isShowing()){
-                    progressDialog.setMessage(getString(com.VitaBit.VitaBit.R.string.portal_main_state_connecting));
+                    progressDialog.setMessage(getString(R.string.portal_main_state_connecting));
                     progressDialog.show();
                     getName = macList.get(index).name;
                     MyLog.e(TAG,"点击的Modlename是+++++"+macList.get(index).name);
@@ -182,8 +179,8 @@ public class BandListActivity extends ToolBarActivity {
         });
 
         LayoutInflater inflater = getLayoutInflater();
-        final View layout = inflater.inflate(com.VitaBit.VitaBit.R.layout.activity_bound_band3, (LinearLayout) findViewById(com.VitaBit.VitaBit.R.id.layout_bundband));
-        boundBtn = (Button) layout.findViewById(com.VitaBit.VitaBit.R.id.btncancle);
+        final View layout = inflater.inflate(R.layout.activity_bound_band3, (LinearLayout) findViewById(R.id.layout_bundband));
+        boundBtn = (Button) layout.findViewById(R.id.btncancle);
         boundBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -192,15 +189,15 @@ public class BandListActivity extends ToolBarActivity {
                 if (timer != null)
                     timer.cancel();
                 provider.clearProess();
-                BleService.getInstance(BandListActivity.this).releaseBLE();
+                BleService.getInstance(BandListActivity3.this).releaseBLE();
                 setResult(RESULT_BACK);
                 finish();
             }
         });
         button_txt[0] = button_txt_count;
-        dialog_bound = new AlertDialog.Builder(BandListActivity.this)
+        dialog_bound = new AlertDialog.Builder(BandListActivity3.this)
                 .setView(layout)
-                .setTitle(com.VitaBit.VitaBit.R.string.portal_main_isbounding)
+                .setTitle(R.string.portal_main_isbounding)
                 .setOnKeyListener(new DialogInterface.OnKeyListener() {
 
                     @Override
@@ -247,12 +244,12 @@ public class BandListActivity extends ToolBarActivity {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 0x333:
-                    provider.requestbound_recy(BandListActivity.this);
+                    provider.requestbound_recy(BandListActivity3.this);
                     break;
                 case REFRESH_BUTTON:
                     button_txt[0] = button_txt_count;
                     Log.e(TAG, button_txt_count + "");
-                    String second_txt = MessageFormat.format(getString(com.VitaBit.VitaBit.R.string.bound_scan_sqr), button_txt);
+                    String second_txt = MessageFormat.format(getString(R.string.bound_scan_sqr), button_txt);
                     boundBtn.setText(second_txt);
                     if (button_txt_count == 0) {
                         if (dialog_bound != null && dialog_bound.isShowing()) {
@@ -260,7 +257,7 @@ public class BandListActivity extends ToolBarActivity {
                                 timer.cancel();
                             dialog_bound.dismiss();
                         }
-                        BleService.getInstance(BandListActivity.this).releaseBLE();
+                        BleService.getInstance(BandListActivity3.this).releaseBLE();
                         setResult(RESULT_FAIL);
                         finish();
                     }
@@ -275,14 +272,14 @@ public class BandListActivity extends ToolBarActivity {
 
         @Override
         protected Activity getActivity() {
-            return BandListActivity.this;
+            return BandListActivity3.this;
         }
 
         @Override
         public void updateFor_handleNotEnableMsg() {
             super.updateFor_handleNotEnableMsg();
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            BandListActivity.this.startActivityForResult(enableBtIntent, BleService.REQUEST_ENABLE_BT);
+            BandListActivity3.this.startActivityForResult(enableBtIntent, BleService.REQUEST_ENABLE_BT);
         }
 
         @Override
@@ -339,48 +336,26 @@ public class BandListActivity extends ToolBarActivity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            provider.requestbound_fit(BandListActivity.this);
+            provider.requestbound_fit(BandListActivity3.this);
         }
 
-        @Override
-        public void updateFor_BoundNoCharge() {
-            super.updateFor_BoundNoCharge();
-            Log.e("BLEListActivity", "updateFor_BoundNoCharge");
-            if (dialog_bound != null && dialog_bound.isShowing()) {
-                if (timer != null)
-                    timer.cancel();
-                dialog_bound.dismiss();
-            }
-            ToastUtil.showMyToast(BandListActivity.this,getString(R.string.portal_main_bound_failed_nocharge));
-            setResult(RESULT_NOCHARGE);
-            finish();
-        }
+//        @Override
+//        public void updateFor_BoundNoCharge() {
+//            super.updateFor_BoundNoCharge();
+//            Log.e("BLEListActivity", "updateFor_BoundNoCharge");
+//            if (dialog_bound != null && dialog_bound.isShowing()) {
+//                if (timer != null)
+//                    timer.cancel();
+//                dialog_bound.dismiss();
+//            }
+//            ToastUtil.showMyToast(BandListActivity3.this,getString(R.string.portal_main_bound_failed_nocharge));
+//            setResult(RESULT_NOCHARGE);
+//            finish();
+//        }
 
         @Override
         public void updateFor_BoundContinue() {
             super.updateFor_BoundContinue();
-            if(progressDialog!=null && progressDialog.isShowing() )
-                progressDialog.dismiss();
-//            if (getName.equals("B100A0")){
-                if(dialog_bound!=null && !dialog_bound.isShowing() )
-                    dialog_bound.show();
-//            }
-            if (dialog_bound != null && dialog_bound.isShowing()) {
-                if(timer==null){
-                    timer = new Timer(); // 每1s更新一下
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            boundhandler.post(butttonRunnable);
-                            button_txt_count--;
-                            MyLog.e(TAG, "Timer开始了");
-                            if (button_txt_count < 0) {
-                                timer.cancel();
-                            }
-                        }
-                    }, 0, 1000);
-                }
-            }
 
             if (sendcount < sendcount_MAX) {
                 boundhandler.postDelayed(boundRunnable, sendcount_time);
@@ -388,7 +363,7 @@ public class BandListActivity extends ToolBarActivity {
             } else {
                 Log.e("BandListActivity", "已经发送超出15次");
                 provider.clearProess();
-                BleService.getInstance(BandListActivity.this).releaseBLE();
+                BleService.getInstance(BandListActivity3.this).releaseBLE();
                 setResult(RESULT_FAIL);
                 finish();
             }
@@ -396,20 +371,20 @@ public class BandListActivity extends ToolBarActivity {
 
         @Override
         public void updateFor_BoundSucess() {
-            provider.SetDeviceTime(BandListActivity.this);
-            BleService.getInstance(BandListActivity.this).syncAllDeviceInfo(BandListActivity.this);
+            provider.SetDeviceTime(BandListActivity3.this);
+            BleService.getInstance(BandListActivity3.this).syncAllDeviceInfo(BandListActivity3.this);
         }
 
         @Override
         public void updateFor_handleSetTime() {
-            provider.getModelName(BandListActivity.this);
+            provider.getModelName(BandListActivity3.this);
         }
 
         @Override
         public void updateFor_notifyForModelName(LPDeviceInfo latestDeviceInfo) {
             if(latestDeviceInfo==null){
                 //未获取成功  重新获取
-                provider.getModelName(BandListActivity.this);
+                provider.getModelName(BandListActivity3.this);
             }else{
                 modelName = latestDeviceInfo.modelName;
                 MyLog.e(TAG,"modelName是："+modelName);
@@ -418,7 +393,7 @@ public class BandListActivity extends ToolBarActivity {
                         timer.cancel();
                     dialog_bound.dismiss();
                 }
-                MyApplication.getInstance(BandListActivity.this).getLocalUserInfoProvider().getDeviceEntity().setModel_name(modelName);
+                MyApplication.getInstance(BandListActivity3.this).getLocalUserInfoProvider().getDeviceEntity().setModel_name(modelName);
                 //获取成功
                 startBound();
             }
@@ -432,21 +407,21 @@ public class BandListActivity extends ToolBarActivity {
             if (resultFromServer != null) {
                 if (((String) resultFromServer).equals("1")) {
                     Log.e(TAG, "绑定成功！");
-                    MyApplication.getInstance(BandListActivity.this).getLocalUserInfoProvider().getDeviceEntity().setLast_sync_device_id(provider.getCurrentDeviceMac());
-                    MyApplication.getInstance(BandListActivity.this).getLocalUserInfoProvider().getDeviceEntity().setDevice_type(MyApplication.DEVICE_BAND);
+                    MyApplication.getInstance(BandListActivity3.this).getLocalUserInfoProvider().getDeviceEntity().setLast_sync_device_id(provider.getCurrentDeviceMac());
+                    MyApplication.getInstance(BandListActivity3.this).getLocalUserInfoProvider().getDeviceEntity().setDevice_type(MyApplication.DEVICE_BAND);
                     if (progressDialog != null && progressDialog.isShowing())
                         progressDialog.dismiss();
-                    ToolKits.showCommonTosat(BandListActivity.this, true, ToolKits.getStringbyId(BandListActivity.this, com.VitaBit.VitaBit.R.string.portal_main_bound_success), Toast.LENGTH_LONG);
+                    ToolKits.showCommonTosat(BandListActivity3.this, true, ToolKits.getStringbyId(BandListActivity3.this, R.string.portal_main_bound_success), Toast.LENGTH_LONG);
                     setResult(RESULT_OK);
                     finish();
                 } else if (((String) resultFromServer).equals("10024")) {
                     MyLog.e(TAG, "========绑定失败！========");
                     if (progressDialog != null && progressDialog.isShowing())
                         progressDialog.dismiss();
-                    new android.support.v7.app.AlertDialog.Builder(BandListActivity.this)
-                            .setTitle(getActivity().getResources().getString(com.VitaBit.VitaBit.R.string.general_prompt))
-                            .setMessage(MessageFormat.format(ToolKits.getStringbyId(getActivity(), com.VitaBit.VitaBit.R.string.portal_main_has_bound_other), BoundFailMSG_SHOUHUAN))
-                            .setPositiveButton(getActivity().getResources().getString(com.VitaBit.VitaBit.R.string.general_ok), new DialogInterface.OnClickListener() {
+                    new android.support.v7.app.AlertDialog.Builder(BandListActivity3.this)
+                            .setTitle(getActivity().getResources().getString(R.string.general_prompt))
+                            .setMessage(MessageFormat.format(ToolKits.getStringbyId(getActivity(), R.string.portal_main_has_bound_other), BoundFailMSG_SHOUHUAN))
+                            .setPositiveButton(getActivity().getResources().getString(R.string.general_ok), new DialogInterface.OnClickListener() {
 
                                 @Override
                                 public void onClick(DialogInterface dialog_, int which) {
@@ -477,7 +452,7 @@ public class BandListActivity extends ToolBarActivity {
                 dialog_bound.dismiss();
             }
             provider.clearProess();
-            provider.unBoundDevice(BandListActivity.this);
+            provider.unBoundDevice(BandListActivity3.this);
             if (progressDialog != null && progressDialog.isShowing())
                 progressDialog.dismiss();
             setResult(RESULT_FAIL);
@@ -490,7 +465,7 @@ public class BandListActivity extends ToolBarActivity {
         // 绑定设备时必须保证首先从服务端取来标准UTC时间，以便给设备校时(要看看网络是否连接)
         MyLog.e(TAG, "startBound()");
         if(progressDialog!=null && !progressDialog.isShowing()){
-            progressDialog.setMessage(getString(com.VitaBit.VitaBit.R.string.general_submitting));
+            progressDialog.setMessage(getString(R.string.general_submitting));
             progressDialog.show();
         }
         if (observerAdapter != null)
@@ -542,9 +517,9 @@ public class BandListActivity extends ToolBarActivity {
 
         @Override
         protected View noConvertView(int position, View convertView, ViewGroup parent) {
-            convertView = inflater.inflate(com.VitaBit.VitaBit.R.layout.list_item_ble_list, parent, false);
+            convertView = inflater.inflate(R.layout.list_item_ble_list, parent, false);
             holder = new ViewHolder();
-            holder.mac = (TextView) convertView.findViewById(com.VitaBit.VitaBit.R.id.activity_sport_data_detail_sleepSumView);
+            holder.mac = (TextView) convertView.findViewById(R.id.activity_sport_data_detail_sleepSumView);
             convertView.setTag(holder);
             return convertView;
         }

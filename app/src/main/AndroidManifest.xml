@@ -152,6 +152,17 @@
 
         <!-- LoginFromPhoneActivity -->
 
+        <activity android:name=".logic.UI.main.bundband.BandListActivity" android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity android:name=".logic.UI.main.bundband.BundBandActivity" android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity android:name=".logic.UI.main.bundband.bundbandstep1" android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity android:name=".logic.UI.main.bundband.bundbandstep2" android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity android:name=".logic.UI.main.bundband.BandListActivity3"  android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar" />
+
         <activity
             android:name="com.VitaBit.VitaBit.logic.UI.launch.LoginFromPhoneActivity"
             android:screenOrientation="portrait"
