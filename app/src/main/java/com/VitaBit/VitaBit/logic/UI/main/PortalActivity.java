@@ -514,10 +514,8 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         if (MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider() == null ||
                 CommonUtils.isStringEmpty(MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id())) {
             startActivityForResult(IntentFactory.startActivityBandList(PortalActivity.this),CommParams.REQUEST_CODE_BOUND_BAND);
-//            如果要两种方式绑定,就把下面这个打开设置modelname.
+//            如果要两种方式绑定,就把下面这个打开判断modelname.
 //      chooseBundDevice();
-
-//            showBundDialog();
         }
     }
     private void chooseBundDevice(){

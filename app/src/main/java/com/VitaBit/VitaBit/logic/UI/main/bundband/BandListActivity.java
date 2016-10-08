@@ -170,7 +170,7 @@ public class BandListActivity extends ToolBarActivity {
                 provider.setCurrentDeviceMac(macList.get(index).mac);
                 provider.setmBluetoothDevice(macList.get(index).bledevice);
                 provider.connect_mac(macList.get(index).mac);
-
+                MyLog.e(TAG,"点击的Modlename是+++++"+macList.get(index).name);
                 if (progressDialog != null && !progressDialog.isShowing()){
                     progressDialog.setMessage(getString(com.VitaBit.VitaBit.R.string.portal_main_state_connecting));
                     progressDialog.show();
@@ -198,21 +198,23 @@ public class BandListActivity extends ToolBarActivity {
             }
         });
         button_txt[0] = button_txt_count;
-        dialog_bound = new AlertDialog.Builder(BandListActivity.this)
-                .setView(layout)
-                .setTitle(com.VitaBit.VitaBit.R.string.portal_main_isbounding)
-                .setOnKeyListener(new DialogInterface.OnKeyListener() {
+//        倒计时
 
-                    @Override
-                    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-                            return true;
-                        } else {
-                            return false;
+            dialog_bound = new AlertDialog.Builder(BandListActivity.this)
+                    .setView(layout)
+                    .setTitle(com.VitaBit.VitaBit.R.string.portal_main_isbounding)
+                    .setOnKeyListener(new DialogInterface.OnKeyListener() {
+                        @Override
+                        public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                            if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+                                return true;
+                            } else {
+                                return false;
+                            }
                         }
-                    }
-                })
-                .setCancelable(false).create();
+                    })
+                    .setCancelable(false).create();
+
     }
 
     @Override
@@ -412,7 +414,7 @@ public class BandListActivity extends ToolBarActivity {
                 provider.getModelName(BandListActivity.this);
             }else{
                 modelName = latestDeviceInfo.modelName;
-                MyLog.e(TAG,"modelName是："+modelName);
+                MyLog.e(TAG,"设备的modelName是："+modelName);
                 if (dialog_bound != null && dialog_bound.isShowing()){
                     if(timer!=null)
                         timer.cancel();

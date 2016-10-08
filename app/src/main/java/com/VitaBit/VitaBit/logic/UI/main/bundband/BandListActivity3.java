@@ -387,7 +387,7 @@ public class BandListActivity3 extends ToolBarActivity {
                 provider.getModelName(BandListActivity3.this);
             }else{
                 modelName = latestDeviceInfo.modelName;
-                MyLog.e(TAG,"modelName是："+modelName);
+                MyLog.e(TAG,"设备的modelName是："+modelName);
                 if (dialog_bound != null && dialog_bound.isShowing()){
                     if(timer!=null)
                         timer.cancel();
