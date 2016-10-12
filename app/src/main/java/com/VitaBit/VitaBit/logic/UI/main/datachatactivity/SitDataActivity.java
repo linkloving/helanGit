@@ -550,7 +550,7 @@ public class SitDataActivity extends ToolBarActivity implements View.OnClickList
         dataSet.setDrawValues(false);// 柱形图顶端字是否显示
         dataSet.setHighlightEnabled(false);//设置成t触摸的时候回变成灰色'
         dataSet.setHighLightColor(Color.BLUE); //触摸的时候回变成蓝色
-        dataSet.setColor(Color.rgb(223,131,90));
+//        dataSet.setColor(Color.rgb(223,131,90));
         BarData bardata = new BarData();
         bardata.addDataSet(dataSet);
         dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);

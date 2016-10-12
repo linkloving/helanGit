@@ -546,7 +546,7 @@ public class StandDataActivity extends ToolBarActivity implements View.OnClickLi
         dataSet.setDrawValues(false);// 柱形图顶端字是否显示
         dataSet.setHighlightEnabled(false);//设置成t触摸的时候回变成灰色'
         dataSet.setHighLightColor(Color.BLUE); //触摸的时候回变成蓝色
-        dataSet.setColor(Color.rgb(223,167,54));
+//        dataSet.setColor(Color.rgb(223,167,54));
         BarData bardata = new BarData();
         bardata.addDataSet(dataSet);
         dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);

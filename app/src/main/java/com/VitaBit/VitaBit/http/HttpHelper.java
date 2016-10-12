@@ -264,7 +264,9 @@ public class HttpHelper {
                     vitBitData.setMetric("person.posture.sitting");
                 }else if(sportRecords.get(i).getState().equals("113")){
                     vitBitData.setMetric("person.posture.standing");
-                }else if(sportRecords.get(i).getState().equals("0")){
+                }
+
+                else if(sportRecords.get(i).getState().equals("0")){
                     vitBitData.setMetric("person.activeness.sedentary");
                 }
                 vitBitData.setStart_time(format(sportRecords.get(i).getStart_time()));

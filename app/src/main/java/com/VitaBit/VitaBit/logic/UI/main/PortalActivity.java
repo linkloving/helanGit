@@ -1,5 +1,6 @@
 package com.VitaBit.VitaBit.logic.UI.main;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -15,6 +16,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -106,52 +108,91 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     private static final int LOW_BATTERY = 1;
     private static final int JUMP_FRIEND_TAG_TWO = 2;
     ViewGroup contentLayout;
-    @InjectView(com.VitaBit.VitaBit.R.id.drawer_layout) DrawerLayout drawer;
-    @InjectView(com.VitaBit.VitaBit.R.id.toolbar) Toolbar toolbar;
-    @InjectView(com.VitaBit.VitaBit.R.id.recycler_view) RecyclerView menu_RecyclerView;
+    @InjectView(com.VitaBit.VitaBit.R.id.drawer_layout)
+    DrawerLayout drawer;
+    @InjectView(com.VitaBit.VitaBit.R.id.toolbar)
+    Toolbar toolbar;
+    @InjectView(com.VitaBit.VitaBit.R.id.recycler_view)
+    RecyclerView menu_RecyclerView;
 
 
-    @InjectView(com.VitaBit.VitaBit.R.id.user_head_layout) CircleClipLayout user_head_layout;
-    @InjectView(com.VitaBit.VitaBit.R.id.user_head) ImageView user_head;//头像
-    @InjectView(com.VitaBit.VitaBit.R.id.portal_name_view) TextView user_head_name; //头像中的文字
+    @InjectView(com.VitaBit.VitaBit.R.id.user_head_layout)
+    CircleClipLayout user_head_layout;
+    @InjectView(com.VitaBit.VitaBit.R.id.user_head)
+    ImageView user_head;//头像
+    @InjectView(com.VitaBit.VitaBit.R.id.portal_name_view)
+    TextView user_head_name; //头像中的文字
 
-    @InjectView(com.VitaBit.VitaBit.R.id.user_name) TextView user_name;//昵称
+    @InjectView(com.VitaBit.VitaBit.R.id.user_name)
+    TextView user_name;//昵称
 //    @InjectView(R.id.logout) LinearLayout logout;//登出
 
-    @InjectView(com.VitaBit.VitaBit.R.id.device_img) ImageView device_img; //电量图片
-    @InjectView(com.VitaBit.VitaBit.R.id.step_img) ImageView step_img;     //步数图片
-    @InjectView(com.VitaBit.VitaBit.R.id.sit_img) ImageView sit_img;       //坐下
-    @InjectView(com.VitaBit.VitaBit.R.id.stand_img) ImageView stand_img;   //站立
+    @InjectView(com.VitaBit.VitaBit.R.id.device_img)
+    ImageView device_img; //电量图片
+    @InjectView(com.VitaBit.VitaBit.R.id.step_img)
+    ImageView step_img;     //步数图片
+    @InjectView(com.VitaBit.VitaBit.R.id.sit_img)
+    ImageView sit_img;       //坐下
+    @InjectView(com.VitaBit.VitaBit.R.id.stand_img)
+    ImageView stand_img;   //站立
 
-    @InjectView(com.VitaBit.VitaBit.R.id.text_battery) TextView text_Battery;
-    @InjectView(com.VitaBit.VitaBit.R.id.text_step) TextView text_Step;
-    @InjectView(com.VitaBit.VitaBit.R.id.text_sit) TextView text_Sit;
-    @InjectView(com.VitaBit.VitaBit.R.id.text_stand) TextView text_stand;
-    @InjectView(com.VitaBit.VitaBit.R.id.text_sleep) TextView text_Sleep;
-    /**进度条系列*/
-    @InjectView(com.VitaBit.VitaBit.R.id.progressBar_battery) CustomProgressBar Battery_ProgressBar;
-    @InjectView(com.VitaBit.VitaBit.R.id.progressBar_step) CustomProgressBar Step_ProgressBar;
-    @InjectView(com.VitaBit.VitaBit.R.id.progressBar_sit) CustomProgressBar Sit_ProgressBar;
-    @InjectView(com.VitaBit.VitaBit.R.id.progressBar_stand) CustomProgressBar stand_ProgressBar;
-    @InjectView(com.VitaBit.VitaBit.R.id.progressBar_sleep) CustomProgressBar Sleep_ProgressBar;
-    /**ITEM布局系列*/
-    @InjectView(com.VitaBit.VitaBit.R.id.linear_date) LinearLayout date;
+    @InjectView(com.VitaBit.VitaBit.R.id.text_battery)
+    TextView text_Battery;
+    @InjectView(com.VitaBit.VitaBit.R.id.text_step)
+    TextView text_Step;
+    @InjectView(com.VitaBit.VitaBit.R.id.text_sit)
+    TextView text_Sit;
+    @InjectView(com.VitaBit.VitaBit.R.id.text_stand)
+    TextView text_stand;
+    @InjectView(com.VitaBit.VitaBit.R.id.text_sleep)
+    TextView text_Sleep;
+    /**
+     * 进度条系列
+     */
+    @InjectView(com.VitaBit.VitaBit.R.id.progressBar_battery)
+    CustomProgressBar Battery_ProgressBar;
+    @InjectView(com.VitaBit.VitaBit.R.id.progressBar_step)
+    CustomProgressBar Step_ProgressBar;
+    @InjectView(com.VitaBit.VitaBit.R.id.progressBar_sit)
+    CustomProgressBar Sit_ProgressBar;
+    @InjectView(com.VitaBit.VitaBit.R.id.progressBar_stand)
+    CustomProgressBar stand_ProgressBar;
+    @InjectView(com.VitaBit.VitaBit.R.id.progressBar_sleep)
+    CustomProgressBar Sleep_ProgressBar;
+    /**
+     * ITEM布局系列
+     */
+    @InjectView(com.VitaBit.VitaBit.R.id.linear_date)
+    LinearLayout date;
 
-    @InjectView(com.VitaBit.VitaBit.R.id.layout_bund) RelativeLayout layout_bund;
-    @InjectView(com.VitaBit.VitaBit.R.id.linear_unbund) LinearLayout linear_unbund;
-    @InjectView(com.VitaBit.VitaBit.R.id.add_device) ImageView add_device;
-    @InjectView(com.VitaBit.VitaBit.R.id.linear_step) LinearLayout linear_Step;
-    @InjectView(com.VitaBit.VitaBit.R.id.linear_sit) LinearLayout linear_Distance;
-    @InjectView(com.VitaBit.VitaBit.R.id.linear_stand) LinearLayout linear_Stand;
-    @InjectView(com.VitaBit.VitaBit.R.id.linear_sleep) LinearLayout linear_Sleep;
-    @InjectView(com.VitaBit.VitaBit.R.id.linear_battery) LinearLayout linear_Battery;
-    @InjectView(com.VitaBit.VitaBit.R.id.text_time) TextView time;
+    @InjectView(com.VitaBit.VitaBit.R.id.layout_bund)
+    RelativeLayout layout_bund;
+    @InjectView(com.VitaBit.VitaBit.R.id.linear_unbund)
+    LinearLayout linear_unbund;
+    @InjectView(com.VitaBit.VitaBit.R.id.add_device)
+    ImageView add_device;
+    @InjectView(com.VitaBit.VitaBit.R.id.linear_step)
+    LinearLayout linear_Step;
+    @InjectView(com.VitaBit.VitaBit.R.id.linear_sit)
+    LinearLayout linear_Distance;
+    @InjectView(com.VitaBit.VitaBit.R.id.linear_stand)
+    LinearLayout linear_Stand;
+    @InjectView(com.VitaBit.VitaBit.R.id.linear_sleep)
+    LinearLayout linear_Sleep;
+    @InjectView(com.VitaBit.VitaBit.R.id.linear_battery)
+    LinearLayout linear_Battery;
+    @InjectView(com.VitaBit.VitaBit.R.id.text_time)
+    TextView time;
     //下拉刷新
-    @InjectView(com.VitaBit.VitaBit.R.id.mainScrollView) PullToRefreshScrollView mScrollView;
-    @InjectView(com.VitaBit.VitaBit.R.id.nav_headView) LinearLayout nav_headView;
+    @InjectView(com.VitaBit.VitaBit.R.id.mainScrollView)
+    PullToRefreshScrollView mScrollView;
+    @InjectView(com.VitaBit.VitaBit.R.id.nav_headView)
+    LinearLayout nav_headView;
     //修改日期左右的按钮
-    @InjectView(com.VitaBit.VitaBit.R.id.leftBtn) Button btnleft;
-    @InjectView(com.VitaBit.VitaBit.R.id.rightBtn) Button btnright;
+    @InjectView(com.VitaBit.VitaBit.R.id.leftBtn)
+    Button btnleft;
+    @InjectView(com.VitaBit.VitaBit.R.id.rightBtn)
+    Button btnright;
     private MenuNewAdapter menuAdapter;
     private ProgressDialog progressDialog;
     private String User_avatar_file_name;
@@ -187,11 +228,12 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
      * 当前正在运行中的数据加载异步线程(放全局的目的是尽量控制当前只有一个在运行，防止用户恶意切换导致OOM)
      */
     private AsyncTask<Object, Object, DaySynopic> currentDataAsync = null;
+    private int stepTotal;
 
     @Override
     protected void onPause() {
         super.onPause();
-        if(provider.getBleProviderObserver()!=null){
+        if (provider.getBleProviderObserver() != null) {
             provider.setBleProviderObserver(null);
         }
 //        if(!ToolKits.isAppOnForeground(this)){
@@ -207,10 +249,10 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         isRunning = true;
         provider = BleService.getInstance(PortalActivity.this).getCurrentHandlerProvider();
         provider.setBleProviderObserver(bleProviderObserver);
-        if(!PermissionUtil.checkPermission(this,PermissionUtil.PERMISSIONS_BLE)){
+        if (!PermissionUtil.checkPermission(this, PermissionUtil.PERMISSIONS_BLE)) {
             MyLog.e(TAG, "权限未打开");
-            requestPermissions(PermissionUtil.PERMISSIONS_BLE,PermissionUtil.REQUEST_PERMISSIONS_REQUEST_CODE);
-        }else{
+            requestPermissions(PermissionUtil.PERMISSIONS_BLE, PermissionUtil.REQUEST_PERMISSIONS_REQUEST_CODE);
+        } else {
             MyLog.e(TAG, "权限已经打开");
         }
         //判断下要隐藏哪些
@@ -234,6 +276,8 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        检查蓝牙权限
+        checkBle();
         setContentView(com.VitaBit.VitaBit.R.layout.activity_portal_main);
         AppManager.getAppManager().addActivity(this);
         ButterKnife.inject(this);
@@ -256,7 +300,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         refreshBatteryUI();
         // 刷新头像
         /**通过token去获取个人信息*/
-        CallServer.getRequestInstance().add(this, false, CommParams.HTTP_BOUND, HttpHelper.getProfile(userEntity.getUserBase().getThirdparty_access_token()),httpCallback);
+        CallServer.getRequestInstance().add(this, false, CommParams.HTTP_BOUND, HttpHelper.getProfile(userEntity.getUserBase().getThirdparty_access_token()), httpCallback);
         //开始时间
         startDateString = TimeUtils.getstartDateTime(0, new Date());
         //结束时间
@@ -275,12 +319,26 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         MyApplication.getInstance(this).setILifecycle(new ILifecycle() {
             @Override
             public void back2Foreground() {
-                if(!CommonUtils.isStringEmpty(userEntity.getDeviceEntity().getLast_sync_device_id())){
+                if (!CommonUtils.isStringEmpty(userEntity.getDeviceEntity().getLast_sync_device_id())) {
                     BleService.getInstance(PortalActivity.this).syncAllDeviceInfo(PortalActivity.this);
                 }
             }
         });
     }
+
+    private void checkBle() {
+        //判断是否有权限
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            //请求权限
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},1);
+            //判断是否需要 向用户解释，为什么要申请该权限
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_CONTACTS)) {
+                Toast.makeText(this, "shouldShowRequestPermissionRationale", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 
     private void initView() {
         progressDialog = new ProgressDialog(this);
@@ -304,7 +362,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 
         contentLayout.setBackgroundColor(getResources().getColor(com.VitaBit.VitaBit.R.color.yellow_title));
         StatusBarUtil.setTranslucentForDrawerLayout(this, drawer, 0);
-        ScreenUtils.setMargins(toolbar,0,ScreenUtils.getStatusHeight(this) ,0,0);
+        ScreenUtils.setMargins(toolbar, 0, ScreenUtils.getStatusHeight(this), 0, 0);
 
         //侧边栏适配器
         setAdapter();
@@ -318,7 +376,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                 //刷新同步数据
                 String s = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id();
                 if (CommonUtils.isStringEmpty(s)) {
-                   //
+                    //
 //                    showBundDialog();
                     mScrollView.onRefreshComplete();
                 } else {
@@ -416,70 +474,70 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         String date8before = TimeUtils.getstartDateTime(-8, new Date());
         String DateNow = TimeUtils.getstartDateTime(-1, new Date());
         ArrayList<DaySynopic> mDaySynopicArrayList = DaySynopicTable.findDaySynopicRange(PortalActivity.this, userEntity.getUser_id() + "", date8before, DateNow, String.valueOf(TimeZoneHelper.getTimeZoneOffsetMinute()));
-        if(mDaySynopicArrayList==null  || mDaySynopicArrayList.size()==0){
+        if (mDaySynopicArrayList == null || mDaySynopicArrayList.size() == 0) {
             MyLog.e(TAG, "mDaySynopicArrayList都是null");
             step_goal = 0;
             sit_goal = 0;
             stand_goal = 0;
-        }else{
+        } else {
             int daySynopicSize = mDaySynopicArrayList.size();
-            MyLog.e(TAG, "daySynopicSize:"+daySynopicSize);
-            for(DaySynopic mDaySynopic:mDaySynopicArrayList){
-                MyLog.e(TAG, "mDaySynopic:"+mDaySynopic);
+            MyLog.e(TAG, "daySynopicSize:" + daySynopicSize);
+            for (DaySynopic mDaySynopic : mDaySynopicArrayList) {
+                MyLog.e(TAG, "mDaySynopic:" + mDaySynopic);
             }
-            double workSum = 0,sitSum = 0,standSum = 0;
-            for(int i = 0;i<mDaySynopicArrayList.size();i++){
+            double workSum = 0, sitSum = 0, standSum = 0;
+            for (int i = 0; i < mDaySynopicArrayList.size(); i++) {
                 //走路 分钟
-                double walktime,runtime;
-                if(CommonUtils.isStringEmpty(mDaySynopicArrayList.get(i).getWork_duration())){
+                double walktime, runtime;
+                if (CommonUtils.isStringEmpty(mDaySynopicArrayList.get(i).getWork_duration())) {
                     walktime = 0;
-                }else{
+                } else {
                     walktime = CommonUtils.getScaledDoubleValue(Double.valueOf(mDaySynopicArrayList.get(i).getWork_duration()), 1);
                 }
 
-                if(CommonUtils.isStringEmpty(mDaySynopicArrayList.get(i).getRun_duration())){
+                if (CommonUtils.isStringEmpty(mDaySynopicArrayList.get(i).getRun_duration())) {
                     runtime = 0;
-                }else{
+                } else {
                     runtime = CommonUtils.getScaledDoubleValue(Double.valueOf(mDaySynopicArrayList.get(i).getRun_duration()), 1);
                 }
                 double worktime = walktime + runtime;
 
                 workSum += worktime;
 
-                double sittime ;
-                if(CommonUtils.isStringEmpty(mDaySynopicArrayList.get(i).getSitTime())){
+                double sittime;
+                if (CommonUtils.isStringEmpty(mDaySynopicArrayList.get(i).getSitTime())) {
                     sittime = 0;
-                }else{
+                } else {
                     sittime = CommonUtils.getScaledDoubleValue(Double.valueOf(mDaySynopicArrayList.get(i).getSitTime()), 1);
                 }
                 sitSum += sittime;
 
                 double standtime;
-                if(CommonUtils.isStringEmpty(mDaySynopicArrayList.get(i).getStandTime())){
+                if (CommonUtils.isStringEmpty(mDaySynopicArrayList.get(i).getStandTime())) {
                     standtime = 0;
-                }else{
+                } else {
                     standtime = CommonUtils.getScaledDoubleValue(Double.valueOf(mDaySynopicArrayList.get(i).getStandTime()), 1);
                 }
                 standSum += standtime;
             }
-            step_goal = (float) (workSum/daySynopicSize);
-            sit_goal = (float) (sitSum/daySynopicSize);
-            stand_goal = (float) (standSum/daySynopicSize);
+            step_goal = (float) (workSum / daySynopicSize);
+            sit_goal = (float) (sitSum / daySynopicSize);
+            stand_goal = (float) (standSum / daySynopicSize);
 
-            MyLog.e(TAG, "step_goal:"+step_goal);
-            MyLog.e(TAG, "sit_goal:"+sit_goal);
-            MyLog.e(TAG, "stand_goal:"+stand_goal);
+            MyLog.e(TAG, "step_goal:" + step_goal);
+            MyLog.e(TAG, "sit_goal:" + sit_goal);
+            MyLog.e(TAG, "stand_goal:" + stand_goal);
         }
     }
 
     private void refreshVISIBLE() {
         UserEntity userEntity = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider();
         linear_Sleep.setVisibility(View.GONE); //荷兰版本暂时没有睡眠
-        if(CommonUtils.isStringEmpty(userEntity.getUserBase().getThirdparty_access_token())){
+        if (CommonUtils.isStringEmpty(userEntity.getUserBase().getThirdparty_access_token())) {
             nav_headView.setVisibility(View.GONE);
             //侧边栏适配器
             changeAdaper();
-        }else{
+        } else {
             nav_headView.setVisibility(View.VISIBLE);
             //token不是null就去验证
             //侧边栏适配器
@@ -497,7 +555,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             linear_unbund.setVisibility(View.GONE);   //未绑定提示消失
             layout_bund.setVisibility(View.VISIBLE);
             //手环的时候显示手环 手表显示手表
-            MyLog.e(TAG, "获取modelName："+userEntity.getDeviceEntity().getModel_name());
+            MyLog.e(TAG, "获取modelName：" + userEntity.getDeviceEntity().getModel_name());
         }
     }
 
@@ -513,17 +571,18 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     void unBund(View view) {
         if (MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider() == null ||
                 CommonUtils.isStringEmpty(MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id())) {
-            startActivityForResult(IntentFactory.startActivityBandList(PortalActivity.this),CommParams.REQUEST_CODE_BOUND_BAND);
+            startActivityForResult(IntentFactory.startActivityBandList(PortalActivity.this), CommParams.REQUEST_CODE_BOUND_BAND);
 //            如果要两种方式绑定,就把下面这个打开判断modelname.
 //      chooseBundDevice();
         }
     }
-    private void chooseBundDevice(){
-        final AlertDialog.Builder  builder= new AlertDialog.Builder(PortalActivity.this);
+
+    private void chooseBundDevice() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(PortalActivity.this);
         builder.setItems(getResources().getStringArray(R.array.ItemArray), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                switch (which){
+                switch (which) {
                     case 0:
                         Intent intent = new Intent(PortalActivity.this, BandListActivity.class);
                         startActivity(intent);
@@ -537,8 +596,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         });
         builder.show();
     }
-
-
 
 
     @OnClick(com.VitaBit.VitaBit.R.id.linear_sit)
@@ -569,19 +626,19 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         if (userEntity == null || CommonUtils.isStringEmpty(MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id())) {
             showBundDialog();
         } else {
-            startActivity(IntentFactory.star_DeviceActivityIntent(PortalActivity.this,0));
+            startActivity(IntentFactory.star_DeviceActivityIntent(PortalActivity.this, 0));
         }
     }
 
     /**
-     *  刷新用户头像和昵称
+     * 刷新用户头像和昵称
      */
     private void refreshHeadView() {
-        MyLog.i(TAG,"刷新头像和昵称,等数据");
+        MyLog.i(TAG, "刷新头像和昵称,等数据");
         //图像以后设置
         UserEntity u = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider();
         if (u == null) {
-            MyLog.i(TAG,"获得的UserEntity是空的");
+            MyLog.i(TAG, "获得的UserEntity是空的");
             return;
         }
         MyLog.i(TAG, "获得的UserEntity的名字=" + u.getUserBase().getFirst_name() + u.getUserBase().getLast_name());
@@ -590,9 +647,9 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 //        Bitmap bitmap = Bitmap.createBitmap(220,220,Bitmap.Config.ARGB_8888);
         user_head_layout.setM_borderColor(android.graphics.Color.parseColor(u.getUserBase().getAvatar_color()));
         user_head.setBackgroundColor(android.graphics.Color.parseColor(u.getUserBase().getAvatar_color()));
-        String first_name = u.getUserBase().getFirst_name().substring(0,1);
-        String last_name = u.getUserBase().getLast_name().substring(0,1);
-        user_head_name.setText(first_name+last_name);
+        String first_name = u.getUserBase().getFirst_name().substring(0, 1);
+        String last_name = u.getUserBase().getLast_name().substring(0, 1);
+        user_head_name.setText(first_name + last_name);
     }
 
     /**
@@ -601,7 +658,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     private void setAdapter() {
         List<MenuVO> list = new ArrayList<MenuVO>();
         UserEntity userEntity = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider();
-        if(CommonUtils.isStringEmpty(userEntity.getUserBase().getThirdparty_access_token())){
+        if (CommonUtils.isStringEmpty(userEntity.getUserBase().getThirdparty_access_token())) {
             for (int i = 0; i < Left_viewVO.noLogin_menuIcon.length; i++) {
                 MenuVO vo = new MenuVO();
                 vo.setImgID(Left_viewVO.noLogin_menuIcon[i]);
@@ -609,7 +666,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                 list.add(vo);
             }
 
-        }else{
+        } else {
             for (int i = 0; i < Left_viewVO.menuIcon.length; i++) {
                 MenuVO vo = new MenuVO();
                 vo.setImgID(Left_viewVO.menuIcon[i]);
@@ -626,7 +683,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     private void changeAdaper() {
         List<MenuVO> list = new ArrayList<MenuVO>();
         UserEntity userEntity = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider();
-        if(CommonUtils.isStringEmpty(userEntity.getUserBase().getThirdparty_access_token())){
+        if (CommonUtils.isStringEmpty(userEntity.getUserBase().getThirdparty_access_token())) {
             for (int i = 0; i < Left_viewVO.noLogin_menuIcon.length; i++) {
                 MenuVO vo = new MenuVO();
                 vo.setImgID(Left_viewVO.noLogin_menuIcon[i]);
@@ -634,7 +691,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                 list.add(vo);
             }
 
-        }else{
+        } else {
             for (int i = 0; i < Left_viewVO.menuIcon.length; i++) {
                 MenuVO vo = new MenuVO();
                 vo.setImgID(Left_viewVO.menuIcon[i]);
@@ -777,7 +834,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                 int walkStep = (int) (CommonUtils.getScaledDoubleValue(Double.valueOf(mDaySynopic.getWork_step()), 0));
                 //跑步 步数
                 int runStep = (int) (CommonUtils.getScaledDoubleValue(Double.valueOf(mDaySynopic.getRun_step()), 0));
-                int step = walkStep + runStep;
+                stepTotal = walkStep + runStep;
                 //daySynopic:[data_date=2016-04-14,data_date2=null,time_zone=480,record_id=null,user_id=null,run_duration=1.0,run_step=68.0,run_distance=98.0
                 // ,create_time=null,work_duration=178.0,work_step=6965.0,work_distance=5074.0,sleepMinute=2.0916666984558105,deepSleepMiute=1.25 gotoBedTime=1460645100 getupTime=1460657160]
                 //走路 里程
@@ -799,10 +856,10 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                 double runtime = CommonUtils.getScaledDoubleValue(Double.valueOf(mDaySynopic.getRun_duration()), 1);
 
                 double worktime = CommonUtils.getScaledDoubleValue(walktime + runtime, 1);
-                double sittime ;
-                if(CommonUtils.isStringEmpty(mDaySynopic.getSitTime())){
+                double sittime;
+                if (CommonUtils.isStringEmpty(mDaySynopic.getSitTime())) {
                     sittime = 0;
-                }else{
+                } else {
                     sittime = CommonUtils.getScaledDoubleValue(Double.valueOf(mDaySynopic.getSitTime()), 1);
                 }
 
@@ -813,14 +870,14 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 
                 int walkcal = _Utils.calculateCalories(Double.parseDouble(mDaySynopic.getWork_distance()) / (Double.parseDouble(mDaySynopic.getWork_duration())), (int) walktime * 60, userEntity.getUserBase().getUser_weight());
 
-                MyLog.e(TAG,"runcal:"+runcal);
-                MyLog.e(TAG,"walkcal:"+walkcal);
+                MyLog.e(TAG, "runcal:" + runcal);
+                MyLog.e(TAG, "walkcal:" + walkcal);
                 int calValue = runcal + walkcal;
                 // 计算卡路里
 
 //                Log.i(TAG,"卡路里"+calValue+"体重="+userEntity.getUserBase().getUser_weight()+"count="+count);
 //                //将数据显示在控件上
-                refreshView(worktime, sittime,standtime);
+                refreshView(worktime, sittime, standtime);
 
                 if (progressDialog != null && progressDialog.isShowing())
                     progressDialog.dismiss();
@@ -844,61 +901,60 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
      */
     private void refreshView(double step, double sittime, double standtime) {
         MyLog.e(TAG, step + " " + sittime + " " + standtime);
-        text_Step.setText(step + getResources().getString(com.VitaBit.VitaBit.R.string.space) + getResources().getString(com.VitaBit.VitaBit.R.string.unit_min));
-        text_Sit.setText(sittime+ getResources().getString(com.VitaBit.VitaBit.R.string.space) + getResources().getString(com.VitaBit.VitaBit.R.string.unit_min));
+        text_Step.setText(step + getResources().getString(com.VitaBit.VitaBit.R.string.space) + getResources().getString(com.VitaBit.VitaBit.R.string.unit_min)+"/ "+stepTotal+" steps");
+        text_Sit.setText(sittime + getResources().getString(com.VitaBit.VitaBit.R.string.space) + getResources().getString(com.VitaBit.VitaBit.R.string.unit_min));
         //  ext_Cal= (TextView) findViewById(R.id.text_cal);
         text_stand.setText(standtime + getResources().getString(com.VitaBit.VitaBit.R.string.space) + getResources().getString(com.VitaBit.VitaBit.R.string.unit_min));
 
         int step_percent;
-        if(step_goal==0){
+        if (step_goal == 0) {
             step_percent = 0;
-        }else{
+        } else {
             step_percent = (int) Math.floor(step * 100 * 1.0f / step_goal);
         }
         //进度条
         Step_ProgressBar.setCurProgress(step_percent);
-        if(step_percent>PROGRESS_DEFULT){ //进度超过90%就显示绿色
+        if (step_percent > PROGRESS_DEFULT) { //进度超过90%就显示绿色
             step_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_steps_full);
             text_Step.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
             Step_ProgressBar.setProgressColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
-        }else{
+        } else {
             step_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_step);
             text_Step.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.add_device_blue));
             Step_ProgressBar.setProgressColor(getResources().getColor(com.VitaBit.VitaBit.R.color.add_device_blue));
         }
         int sit_percent;
-        if(sit_goal==0){
+        if (sit_goal == 0) {
             sit_percent = 0;
-        }else{
+        } else {
             sit_percent = (int) Math.floor(sittime * 100 * 1.0f / sit_goal);
         }
         Sit_ProgressBar.setCurProgress(sit_percent);
-        if(sit_percent==100){
+        if (sit_percent == 100) {
             sit_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_sit_full);
             text_Sit.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
             Sit_ProgressBar.setProgressColor(getResources().getColor(com.VitaBit.VitaBit.R.color.orangered));
-        }
-        else if(sit_percent>PROGRESS_DEFULT){
+        } else if (sit_percent > PROGRESS_DEFULT) {
             sit_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_sit_full);
             text_Sit.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
             Sit_ProgressBar.setProgressColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
-        }else{
+        } else {
             sit_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_sit);
             text_Sit.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.add_device_blue));
             Sit_ProgressBar.setProgressColor(getResources().getColor(com.VitaBit.VitaBit.R.color.add_device_blue));
         }
         int stand_percent;
-        if(stand_goal==0){
+        if (stand_goal == 0) {
             stand_percent = 0;
-        }else{
+        } else {
             stand_percent = (int) Math.floor(standtime * 100 * 1.0f / stand_goal);
         }
         stand_ProgressBar.setCurProgress(stand_percent);
-        if(stand_percent > PROGRESS_DEFULT){
+        if (stand_percent > PROGRESS_DEFULT) {
             stand_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_stand_full);
             text_stand.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
             stand_ProgressBar.setProgressColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
-        }else{
+        } else {
             stand_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_stand);
             text_stand.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.add_device_blue));
             stand_ProgressBar.setProgressColor(getResources().getColor(com.VitaBit.VitaBit.R.color.add_device_blue));
@@ -935,7 +991,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                         text_Battery.setTextColor(Color.RED);
                         Battery_ProgressBar.setProgressColor(Color.RED);
                         text_Battery.setText(getString(com.VitaBit.VitaBit.R.string.portal_main_state_connected));//根据电量显示不同的文字提示
-                    }else {
+                    } else {
                         int battery_percent = (int) (Math.ceil(battery * 100 * 1.0f / 100));
                         device_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_power_connected);
                         text_Battery.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
@@ -972,7 +1028,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         if (!LocalInfoVO.userId.equals("-1")) {
             int battery = LocalInfoVO.getBattery();
             Battery_ProgressBar.setCurProgress((int) (Math.ceil(battery * 100 * 1.0f / 100)));
-        }else{
+        } else {
             Battery_ProgressBar.setCurProgress((int) (Math.ceil(0 * 100 * 1.0f / 100)));
         }
         device_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_power_disconnected);
@@ -987,39 +1043,39 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         @Override
         public void onSucceed(int what, Response<String> response) {
             String result = response.get();
-            if (result==null){
+            if (result == null) {
                 return;
             }
-            MyLog.e(TAG, "Profile response:"+response.get());
+            MyLog.e(TAG, "Profile response:" + response.get());
             Profile profile = new Gson().fromJson(response.get(), Profile.class);
             userEntity = MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider();
             //设置昵称
-            if(!CommonUtils.isStringEmpty(profile.getFirst_name()) || !CommonUtils.isStringEmpty(profile.getLast_name())){
+            if (!CommonUtils.isStringEmpty(profile.getFirst_name()) || !CommonUtils.isStringEmpty(profile.getLast_name())) {
                 userEntity.getUserBase().setFirst_name(profile.getFirst_name());
                 userEntity.getUserBase().setLast_name(profile.getLast_name());
-                userEntity.getUserBase().setNickname(profile.getFirst_name()+" "+profile.getLast_name() );
+                userEntity.getUserBase().setNickname(profile.getFirst_name() + " " + profile.getLast_name());
                 userEntity.getUserBase().setAvatar_color(profile.getAvatar_color());
             }
 
             //设置性别
-            if(!CommonUtils.isStringEmpty(profile.getGender())){
-                if("male".equals(profile.getGender())){
+            if (!CommonUtils.isStringEmpty(profile.getGender())) {
+                if ("male".equals(profile.getGender())) {
                     userEntity.getUserBase().setUser_sex(1);
-                }else{
+                } else {
                     userEntity.getUserBase().setUser_sex(0);
                 }
             }
-            if(!CommonUtils.isStringEmpty(profile.getHeight())){
-                userEntity.getUserBase().setUser_height((int)Float.parseFloat(profile.getHeight()));
+            if (!CommonUtils.isStringEmpty(profile.getHeight())) {
+                userEntity.getUserBase().setUser_height((int) Float.parseFloat(profile.getHeight()));
             }
 
-            if(!CommonUtils.isStringEmpty(profile.getDob())){
-                String[] date=profile.getDob().split("T");
+            if (!CommonUtils.isStringEmpty(profile.getDob())) {
+                String[] date = profile.getDob().split("T");
                 userEntity.getUserBase().setBirthdate(date[0]);
             }
 
-            if(!CommonUtils.isStringEmpty(profile.getWeight())){
-                userEntity.getUserBase().setUser_weight((int)Float.parseFloat(profile.getWeight()));
+            if (!CommonUtils.isStringEmpty(profile.getWeight())) {
+                userEntity.getUserBase().setUser_weight((int) Float.parseFloat(profile.getWeight()));
             }
             refreshHeadView();
         }
@@ -1047,17 +1103,16 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                     break;
             }
             return;
-        } else if (requestCode == CommParams.REQUEST_CODE_BOUND && resultCode == Activity.RESULT_OK){
+        } else if (requestCode == CommParams.REQUEST_CODE_BOUND && resultCode == Activity.RESULT_OK) {
             String type = data.getStringExtra(BundTypeActivity.KEY_TYPE);
-            if(type.equals(BundTypeActivity.KEY_TYPE_WATCH)){
+            if (type.equals(BundTypeActivity.KEY_TYPE_WATCH)) {
                 startActivityForResult(new Intent(PortalActivity.this, BoundActivity.class), CommParams.REQUEST_CODE_BOUND_WATCH);
-            }else if(type.equals(BundTypeActivity.KEY_TYPE_BAND)){
-                startActivityForResult(IntentFactory.startActivityBundBand(PortalActivity.this),CommParams.REQUEST_CODE_BOUND_BAND);
+            } else if (type.equals(BundTypeActivity.KEY_TYPE_BAND)) {
+                startActivityForResult(IntentFactory.startActivityBundBand(PortalActivity.this), CommParams.REQUEST_CODE_BOUND_BAND);
             }
-        }
-        else if (requestCode == CommParams.REQUEST_CODE_BOUND_BAND && resultCode == Activity.RESULT_OK) {
+        } else if (requestCode == CommParams.REQUEST_CODE_BOUND_BAND && resultCode == Activity.RESULT_OK) {
             MyLog.e(TAG, "手环绑定成功");
-            BleService.getInstance(this).syncAllDeviceInfoAuto(this,false,null);
+            BleService.getInstance(this).syncAllDeviceInfoAuto(this, false, null);
         } else if (requestCode == CommParams.REQUEST_CODE_BOUND_WATCH && resultCode == Activity.RESULT_OK) {
         }
     }
@@ -1074,7 +1129,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 //                                IntentFactory.startBundTypeActivity(PortalActivity.this);
-                                startActivityForResult(IntentFactory.startActivityBundBand(PortalActivity.this),CommParams.REQUEST_CODE_BOUND_BAND);
+                                startActivityForResult(IntentFactory.startActivityBundBand(PortalActivity.this), CommParams.REQUEST_CODE_BOUND_BAND);
                             }
                         })
                 .setNegativeButton(ToolKits.getStringbyId(PortalActivity.this, com.VitaBit.VitaBit.R.string.general_cancel), null)
@@ -1082,12 +1137,13 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         dialog.show();
     }
 
-    
 
     /**
      * 蓝牙观察者实现类.
      */
     private class BLEProviderObserverAdapterImpl extends BLEHandler.BLEProviderObserverAdapter {
+        private int iObj = 0;
+        private int firstInt = -1;
 
         @Override
         protected Activity getActivity() {
@@ -1126,7 +1182,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         @Override
         public void updateFor_handleScanTimeOutMsg() {
             MyLog.e(TAG, "updateFor_handleScanTimeOutMsg");
-            if (mScrollView.isRefreshing()){
+            if (mScrollView.isRefreshing()) {
                 mScrollView.onRefreshComplete();
             }
         }
@@ -1138,7 +1194,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         public void updateFor_handleConnectFailedMsg() {
             //连接失败
             MyLog.e(TAG, "updateFor_handleConnectFailedMsg");
-            if (mScrollView.isRefreshing()){
+            if (mScrollView.isRefreshing()) {
                 mScrollView.onRefreshComplete();
             }
         }
@@ -1161,7 +1217,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             //蓝牙断开的显示
             refreshBatteryUI();
             isReadCard = false;
-            if (mScrollView.isRefreshing()){
+            if (mScrollView.isRefreshing()) {
                 mScrollView.onRefreshComplete();
             }
         }
@@ -1173,7 +1229,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         public void updateFor_notifyFor0x13ExecSucess_D(LPDeviceInfo latestDeviceInfo) {
             MyLog.e(TAG, "updateFor_notifyFor0x13ExecSucess_D");
             isReadCard = true;
-            if (latestDeviceInfo != null && latestDeviceInfo.recoderStatus==5) {
+            if (latestDeviceInfo != null && latestDeviceInfo.recoderStatus == 5) {
                 new android.app.AlertDialog.Builder(PortalActivity.this)
                         .setTitle(com.VitaBit.VitaBit.R.string.general_tip)
                         .setMessage(com.VitaBit.VitaBit.R.string.portal_main_mustbund)
@@ -1195,12 +1251,25 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         /**********
          * 剩余同步运动条目
          *********/
+
         @Override
         public void updateFor_SportDataProcess(Integer obj) {
             super.updateFor_SportDataProcess(obj);
             MyLog.e(TAG, "updateFor_SportDataProcess");
+            iObj++;
+            int percent;
+            if (iObj == 1) {
+                firstInt = obj;
+            }
+            if (obj == 0) {
+                percent = 100;
+            } else {
+                percent = (firstInt - obj) / obj;
+            }
+            MyLog.e(TAG, "fitstint=" + firstInt + "        obj=" + obj + "       int 1=" + iObj);
             if (mScrollView.isRefreshing()) {
-                String second_txt = MessageFormat.format(getString(com.VitaBit.VitaBit.R.string.refresh_data), obj);
+                String second_txt = MessageFormat.format(getString(com.VitaBit.VitaBit.R.string.refresh_data), percent);
+                MyLog.e(TAG, second_txt);
                 mScrollView.getHeaderLayout().getmHeaderText().setText(second_txt);
             }
         }
@@ -1211,6 +1280,9 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         @Override
         public void updateFor_handleDataEnd() {
             MyLog.e(TAG, " updateFor_handleDataEnd ");
+//            把读取运动数据条目初始化
+            iObj = 0;
+            firstInt = -1;
             //把数据库未同步到server的数据提交上去
             if (ToolKits.isNetworkConnected(PortalActivity.this)) {
                 new AsyncTask<Object, Object, Object>() {
@@ -1229,11 +1301,11 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                             final String startTime = up_List.get(0).getStart_time();
                             final String endTime = up_List.get(up_List.size() - 1).getStart_time();
 
-                            CallServer.getRequestInstance().add(PortalActivity.this, false, CommParams.HTTP_SUBMIT_DATA, HttpHelper.updataSportDate(provider.getCurrentDeviceMac(),up_List,MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUserBase().getThirdparty_access_token()), new HttpCallback<String>() {
+                            CallServer.getRequestInstance().add(PortalActivity.this, false, CommParams.HTTP_SUBMIT_DATA, HttpHelper.updataSportDate(provider.getCurrentDeviceMac(), up_List, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUserBase().getThirdparty_access_token()), new HttpCallback<String>() {
                                 @Override
                                 public void onSucceed(int what, Response<String> response) {
                                     PreferencesToolkits.setServerUpdateTime(PortalActivity.this);
-                                    MyLog.e(TAG, "【NEW离线数据同步】response:"+response.get());
+                                    MyLog.e(TAG, "【NEW离线数据同步】response:" + response.get());
                                     long sychedNum = UserDeviceRecord.updateForSynced(PortalActivity.this, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUser_id() + "", startTime, endTime);
                                     MyLog.d(TAG, "【NEW离线数据同步】本次共有" + sychedNum + "条运动数据已被标识为\"已同步\"！[" + startTime + "~" + endTime + "]");
 //                                    if (mScrollView.isRefreshing()) {
@@ -1241,9 +1313,10 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 //                                        mScrollView.getHeaderLayout().getmHeaderText().setText(second_txt);
 //                                    }
                                 }
+
                                 @Override
                                 public void onFailed(int what, String url, Object tag, CharSequence message, int responseCode, long networkMillis) {
-                                    MyLog.e(TAG, "【NEW离线数据同步】 onFailed responseCode:"+responseCode+"message:"+message);
+                                    MyLog.e(TAG, "【NEW离线数据同步】 onFailed responseCode:" + responseCode + "message:" + message);
                                 }
                             });
 //                            try {
@@ -1313,7 +1386,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                                     String version_code = object.getString("version_code");
                                     int priority = object.getIntValue("priority");
                                     if (Integer.parseInt(version_code, 16) > Integer.parseInt(vo.version, 16)) {
-                                        if(priority==1){
+                                        if (priority == 1) {
                                             AlertDialog dialog = new AlertDialog.Builder(PortalActivity.this)
                                                     .setTitle(ToolKits.getStringbyId(PortalActivity.this, com.VitaBit.VitaBit.R.string.general_tip))
                                                     .setMessage(ToolKits.getStringbyId(PortalActivity.this, com.VitaBit.VitaBit.R.string.bracelet_oad_Portal))
@@ -1326,12 +1399,12 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                                                             })
                                                     .setNegativeButton(ToolKits.getStringbyId(PortalActivity.this, com.VitaBit.VitaBit.R.string.general_cancel), null)
                                                     .create();
-                                            if(System.currentTimeMillis()/1000 -PreferencesToolkits.getOADUpdateTime(PortalActivity.this) > 24*3600 ){
+                                            if (System.currentTimeMillis() / 1000 - PreferencesToolkits.getOADUpdateTime(PortalActivity.this) > 24 * 3600) {
                                                 PreferencesToolkits.setOADUpdateTime(PortalActivity.this);
                                                 dialog.show();
                                             }
                                         }
-                                        if(priority==2){
+                                        if (priority == 2) {
                                             startActivity(IntentFactory.star_DeviceActivityIntent(PortalActivity.this, DeviceActivity.DEVICE_UPDATE));
                                         }
 
@@ -1342,12 +1415,11 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 
                         @Override
                         public void onFailed(int what, String url, Object tag, CharSequence message, int responseCode, long networkMillis) {
-
                         }
                     });
                 }
 
-                if (mScrollView.isRefreshing()){
+                if (mScrollView.isRefreshing()) {
                     mScrollView.onRefreshComplete();
                 }
             }
@@ -1421,33 +1493,33 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         public void updateFor_CardNumber(String cardId) {
             MyLog.e(TAG, "updateFor_CardNumber：" + cardId);
             super.updateFor_CardNumber(cardId);
-            if (mScrollView.isRefreshing()){
+            if (mScrollView.isRefreshing()) {
                 mScrollView.onRefreshComplete();
             }
         }
     }
 
-    private void setSyncTimeFromLocaVo(){
-        LocalInfoVO localInfoVO  = PreferencesToolkits.getLocalDeviceInfo(PortalActivity.this);
-        if(localInfoVO.getSyncTime()!=0){
+    private void setSyncTimeFromLocaVo() {
+        LocalInfoVO localInfoVO = PreferencesToolkits.getLocalDeviceInfo(PortalActivity.this);
+        if (localInfoVO.getSyncTime() != 0) {
             Date date = new Date(localInfoVO.getSyncTime());
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(ToolKits.DATE_FORMAT_MM_DD_HH_MM_SS);
             String synctime = simpleDateFormat.format(date);
-            mScrollView.getHeaderLayout().setPullLabel(getResources().getString(com.VitaBit.VitaBit.R.string.portal_device_updatetime)+synctime);
-        }else{
+            mScrollView.getHeaderLayout().setPullLabel(getResources().getString(com.VitaBit.VitaBit.R.string.portal_device_updatetime) + synctime);
+        } else {
             String synctime = "";
-            mScrollView.getHeaderLayout().setPullLabel(getResources().getString(com.VitaBit.VitaBit.R.string.portal_device_updatetime)+synctime);
+            mScrollView.getHeaderLayout().setPullLabel(getResources().getString(com.VitaBit.VitaBit.R.string.portal_device_updatetime) + synctime);
         }
 
         long serverTime = PreferencesToolkits.getServerUpdateTime(PortalActivity.this);
-        if(serverTime!=0){
+        if (serverTime != 0) {
             Date date = new Date(serverTime);
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(ToolKits.DATE_FORMAT_MM_DD_HH_MM_SS);
             String synctime = simpleDateFormat.format(date);
-            mScrollView.getHeaderLayout().setReleaseLabel(getResources().getString(com.VitaBit.VitaBit.R.string.portal_server_updatetime)+synctime);
-        }else{
+            mScrollView.getHeaderLayout().setReleaseLabel(getResources().getString(com.VitaBit.VitaBit.R.string.portal_server_updatetime) + synctime);
+        } else {
             String synctime = "";
-            mScrollView.getHeaderLayout().setReleaseLabel(getResources().getString(com.VitaBit.VitaBit.R.string.portal_server_updatetime)+synctime);
+            mScrollView.getHeaderLayout().setReleaseLabel(getResources().getString(com.VitaBit.VitaBit.R.string.portal_server_updatetime) + synctime);
         }
 
 
@@ -1464,7 +1536,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                         @Override
                         public void onClick(View view) {
                             // Request permission
-                            ActivityCompat.requestPermissions(PortalActivity.this, new String[]{permission},requestcode);
+                            ActivityCompat.requestPermissions(PortalActivity.this, new String[]{permission}, requestcode);
                         }
                     })
                     .show();
@@ -1472,7 +1544,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             // Request permission. It's possible this can be auto answered if device policy
             // sets the permission in a given state or the user denied the permission
             // previously and checked "Never ask again".
-            ActivityCompat.requestPermissions(PortalActivity.this,new String[]{permission}, requestcode);
+            ActivityCompat.requestPermissions(PortalActivity.this, new String[]{permission}, requestcode);
         }
     }
 

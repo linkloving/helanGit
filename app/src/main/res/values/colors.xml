@@ -78,9 +78,9 @@
     <color name="step_data_gray2">#6A6667</color>
 
     <!--图表颜色 -->
-    <color name="chart_color_walk">#F5C728</color>
-    <color name="chart_color_sit">#F25A4A</color>
-    <color name="chart_color_stand">#DA0000</color>
+    <color name="chart_color_walk">#DEC976</color>
+    <color name="chart_color_sit">#DF835A</color>
+    <color name="chart_color_stand">#DFA736</color>
 
     <!---->
 

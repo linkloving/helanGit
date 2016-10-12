@@ -1107,7 +1107,8 @@
     <string name="smssdk_country_List">Country List</string>
     <!-- 下拉刷新 -->
     <string name="refresh_time">set time success...</string>
-    <string name="refresh_data">syncdata...left{0}</string>
+    <!--<string name="refresh_data">syncdata...left{0}</string>-->
+    <string name="refresh_data">Synchronizing {0}%</string>
     <!-- 6.0权限 -->
     <string name="permission_ble">打开位置权限才可以使用连爱蓝牙功能哦~</string>
     <!-- 主界面输入pinCode区域-->

@@ -302,7 +302,7 @@ public class StepDataActivity extends ToolBarActivity implements View.OnClickLis
         dataSet.setDrawValues(false);// 柱形图顶端字是否显示
         dataSet.setHighlightEnabled(false);//设置成t触摸的时候回变成灰色'
         dataSet.setHighLightColor(Color.BLUE); //触摸的时候回变成蓝色
-        dataSet.setColor(Color.rgb(223,201,118));
+//        dataSet.setColor(Color.rgb(223,201,118));
         BarData bardata = new BarData();
         bardata.addDataSet(dataSet);
         dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
