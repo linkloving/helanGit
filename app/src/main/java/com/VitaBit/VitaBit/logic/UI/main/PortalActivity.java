@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -1301,7 +1302,9 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                             final String startTime = up_List.get(0).getStart_time();
                             final String endTime = up_List.get(up_List.size() - 1).getStart_time();
 
-                            CallServer.getRequestInstance().add(PortalActivity.this, false, CommParams.HTTP_SUBMIT_DATA, HttpHelper.updataSportDate(provider.getCurrentDeviceMac(), up_List, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUserBase().getThirdparty_access_token()), new HttpCallback<String>() {
+                            CallServer.getRequestInstance().
+                                    add(PortalActivity.this, false, CommParams.HTTP_SUBMIT_DATA, HttpHelper.updataSportDate(PortalActivity.this, provider.getCurrentDeviceMac(),
+                                            up_List, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUserBase().getThirdparty_access_token()), new HttpCallback<String>() {
                                 @Override
                                 public void onSucceed(int what, Response<String> response) {
                                     PreferencesToolkits.setServerUpdateTime(PortalActivity.this);

@@ -1,8 +1,12 @@
 package com.VitaBit.VitaBit.http;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.nfc.Tag;
 
 import com.VitaBit.VitaBit.CommParams;
+import com.VitaBit.VitaBit.R;
 import com.VitaBit.VitaBit.http.basic.MyJsonRequest;
 import com.VitaBit.VitaBit.http.data.ActionConst;
 import com.VitaBit.VitaBit.http.data.DataFromClientNew;
@@ -222,7 +226,7 @@ public class HttpHelper {
     /**
      * 获取getProfile
      */
-    public static Request<String> updataSportDate(String mac, List<SportRecord> sportRecords,String token) {
+    public static Request<String> updataSportDate(Context context,String mac, List<SportRecord> sportRecords,String token) {
         List<VitBitData> vitBitDatas = new ArrayList<>();
         for(int i = 0;i<sportRecords.size();i++){
             if(sportRecords.get(i).getState().equals("1") || sportRecords.get(i).getState().equals("2") )
@@ -265,10 +269,9 @@ public class HttpHelper {
                 }else if(sportRecords.get(i).getState().equals("113")){
                     vitBitData.setMetric("person.posture.standing");
                 }
-
-                else if(sportRecords.get(i).getState().equals("0")){
+              /*  else if(sportRecords.get(i).getState().equals("0")){
                     vitBitData.setMetric("person.activeness.sedentary");
-                }
+                }*/
                 vitBitData.setStart_time(format(sportRecords.get(i).getStart_time()));
                 vitBitData.setValue(Integer.parseInt(sportRecords.get(i).getDuration()));
                 MyLog.e("【NEW离线数据同步】","vitBitData.toString()："+vitBitData.toString());
@@ -277,10 +280,33 @@ public class HttpHelper {
         }
         MyJsonRequest httpsRequest = new MyJsonRequest(CommParams.SERVER_CONTROLLER_URL_HELAN+"measurement");
         httpsRequest.addHeader("Authorization",token);
+        String versionName = "1";
+        try {
+            versionName = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        httpsRequest.addHeader("User-Agent",versionName);
+        MyLog.e("【NEW离线数据同步】","httpsRequest.toString()"+httpsRequest.toString());
         MyLog.e("【NEW离线数据同步】","data："+JSON.toJSONString(vitBitDatas, SerializerFeature.DisableCircularReferenceDetect));
         httpsRequest.setRequestBody(JSON.toJSONString(vitBitDatas, SerializerFeature.DisableCircularReferenceDetect).getBytes());
         return httpsRequest;
     }
+    /**
+     * 获取版本号
+     * @return 当前应用的版本号
+     */
+   /* public String getVersion() {
+        try {
+            PackageManager manager = this.getPackageManager();
+            PackageInfo info = manager.getPackageInfo(this.getPackageName(), 0);
+            String version = info.versionName;
+            return  version;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }*/
 
     //将起始时间加上s
     private static String format(String date){
