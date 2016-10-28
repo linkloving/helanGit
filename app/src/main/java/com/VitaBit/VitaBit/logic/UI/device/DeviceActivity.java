@@ -142,7 +142,7 @@ public class DeviceActivity extends ToolBarActivity implements View.OnClickListe
         activity_own_update = (LinearLayout) findViewById(R.id.activity_own_update);
         activity_own_delete = (LinearLayout) findViewById(R.id.activity_own_delete);
 
-        device_img.setImageDrawable(getResources().getDrawable(R.mipmap.device_bg));
+        device_img.setImageDrawable(getResources().getDrawable(R.mipmap.device_gray));
         //如果是主界面提示需要更新 那就直接开始更新
         if(type == DEVICE_UPDATE){
             click_oad = true;

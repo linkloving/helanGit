@@ -160,6 +160,16 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     CustomProgressBar stand_ProgressBar;
     @InjectView(com.VitaBit.VitaBit.R.id.progressBar_sleep)
     CustomProgressBar Sleep_ProgressBar;
+/**
+ * 三个右按钮
+ */
+    @InjectView(R.id.stepNext)
+    Button stepnext ;
+    @InjectView(R.id.sitNext)
+    Button sitNext ;
+    @InjectView(R.id.standNext)
+    Button standNext ;
+
     /**
      * ITEM布局系列
      */
@@ -561,18 +571,15 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
     }
 
 
-    @OnClick(com.VitaBit.VitaBit.R.id.linear_step)
-    void toStep(View view) {
-        Intent intent1 = IntentFactory.cteate_StepDataActivityIntent(PortalActivity.this);
-        intent1.putExtra("time", time.getText());
-        startActivity(intent1);
-    }
+
 
     @OnClick(com.VitaBit.VitaBit.R.id.add_device)
     void unBund(View view) {
         if (MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider() == null ||
                 CommonUtils.isStringEmpty(MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getDeviceEntity().getLast_sync_device_id())) {
-            startActivityForResult(IntentFactory.startActivityBandList(PortalActivity.this), CommParams.REQUEST_CODE_BOUND_BAND);
+            Intent intent = new Intent(PortalActivity.this, bundbandstep1.class);
+            startActivityForResult(intent,CommParams.REQUEST_CODE_BOUND_BAND);
+//            startActivityForResult(IntentFactory.startActivityBandList(PortalActivity.this), CommParams.REQUEST_CODE_BOUND_BAND);
 //            如果要两种方式绑定,就把下面这个打开判断modelname.
 //      chooseBundDevice();
         }
@@ -598,12 +605,32 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         builder.show();
     }
 
+    @OnClick(R.id.stepNext)
+    void setStepnext(View view){
+        toStep(view);
+    }
+
+
+    @OnClick(com.VitaBit.VitaBit.R.id.linear_step)
+    void toStep(View view) {
+        Intent intent1 = IntentFactory.cteate_StepDataActivityIntent(PortalActivity.this);
+        intent1.putExtra("time", time.getText());
+        startActivity(intent1);
+    }
+    @OnClick(R.id.sitNext)
+    void setSitnext(View view){
+        toDistance(view);
+    }
 
     @OnClick(com.VitaBit.VitaBit.R.id.linear_sit)
     void toDistance(View view) {
         Intent intent = IntentFactory.cteate_SitActivityIntent(PortalActivity.this);
         intent.putExtra("time", time.getText());
         startActivity(intent);
+    }
+    @OnClick(R.id.standNext)
+    void setStandnext(View view){
+        toCal(view);
     }
 
     @OnClick(com.VitaBit.VitaBit.R.id.linear_stand)
@@ -917,7 +944,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         Step_ProgressBar.setCurProgress(step_percent);
         if (step_percent > PROGRESS_DEFULT) { //进度超过90%就显示绿色
             step_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_steps_full);
-            text_Step.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
+//            text_Step.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
             Step_ProgressBar.setProgressColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
         } else {
             step_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_step);
@@ -933,11 +960,11 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         Sit_ProgressBar.setCurProgress(sit_percent);
         if (sit_percent == 100) {
             sit_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_sit_full);
-            text_Sit.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
+//            text_Sit.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
             Sit_ProgressBar.setProgressColor(getResources().getColor(com.VitaBit.VitaBit.R.color.orangered));
         } else if (sit_percent > PROGRESS_DEFULT) {
             sit_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_sit_full);
-            text_Sit.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
+//            text_Sit.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
             Sit_ProgressBar.setProgressColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
         } else {
             sit_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_sit);
@@ -953,7 +980,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         stand_ProgressBar.setCurProgress(stand_percent);
         if (stand_percent > PROGRESS_DEFULT) {
             stand_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_stand_full);
-            text_stand.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
+//            text_stand.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
             stand_ProgressBar.setProgressColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
         } else {
             stand_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_stand);
@@ -988,13 +1015,13 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                                             }
                                         }).create();
                         dialog_battery.show();
-                        device_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_power_low);
+                        device_img.setImageResource(R.mipmap.device_red);
                         text_Battery.setTextColor(Color.RED);
                         Battery_ProgressBar.setProgressColor(Color.RED);
                         text_Battery.setText(getString(com.VitaBit.VitaBit.R.string.portal_main_state_connected));//根据电量显示不同的文字提示
                     } else {
                         int battery_percent = (int) (Math.ceil(battery * 100 * 1.0f / 100));
-                        device_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_power_connected);
+                        device_img.setImageResource(R.mipmap.device_green);
                         text_Battery.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
                         Battery_ProgressBar.setProgressColor(getResources().getColor(com.VitaBit.VitaBit.R.color.battery_green));
                         text_Battery.setText(getString(com.VitaBit.VitaBit.R.string.portal_main_state_connected));//根据电量显示不同的文字提示
@@ -1032,7 +1059,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         } else {
             Battery_ProgressBar.setCurProgress((int) (Math.ceil(0 * 100 * 1.0f / 100)));
         }
-        device_img.setImageResource(com.VitaBit.VitaBit.R.mipmap.main_power_disconnected);
+        device_img.setImageResource(R.mipmap.device_gray);
         text_Battery.setTextColor(getResources().getColor(com.VitaBit.VitaBit.R.color.bg_gray));
         Battery_ProgressBar.setProgressColor(getResources().getColor(com.VitaBit.VitaBit.R.color.bg_gray));
     }
@@ -1300,11 +1327,12 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                         //有数据才去算
                         if (up_List.size() > 0) {
                             final String startTime = up_List.get(0).getStart_time();
+                            String[] split = startTime.split(" ");
+                            String time = split[0];
                             final String endTime = up_List.get(up_List.size() - 1).getStart_time();
-
+                            MyLog.e(TAG,"starttime"+startTime);
                             CallServer.getRequestInstance().
-                                    add(PortalActivity.this, false, CommParams.HTTP_SUBMIT_DATA, HttpHelper.updataSportDate(PortalActivity.this, provider.getCurrentDeviceMac(),
-                                            up_List, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUserBase().getThirdparty_access_token()), new HttpCallback<String>() {
+                                    add(PortalActivity.this, false, CommParams.HTTP_SUBMIT_DATA, HttpHelper.updataSportDate(PortalActivity.this, provider.getCurrentDeviceMac(), up_List, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUserBase().getThirdparty_access_token()), new HttpCallback<String>() {
                                 @Override
                                 public void onSucceed(int what, Response<String> response) {
                                     PreferencesToolkits.setServerUpdateTime(PortalActivity.this);

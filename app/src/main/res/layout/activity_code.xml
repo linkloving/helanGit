@@ -14,7 +14,7 @@
         android:id="@+id/linearLayout_phone"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="80dp"
         android:background="@drawable/alarm_setting_content_bg"
         android:orientation="vertical"
         android:padding="2dp">

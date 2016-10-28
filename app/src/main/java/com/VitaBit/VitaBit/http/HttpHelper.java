@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.nfc.Tag;
+import android.text.format.Time;
 
 import com.VitaBit.VitaBit.CommParams;
 import com.VitaBit.VitaBit.R;
@@ -22,6 +23,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.linkloving.band.dto.SportRecord;
 import com.VitaBit.VitaBit.MyApplication;
 import com.linkloving.utils.TimeUtil;
+import com.linkloving.utils.TimeZoneHelper;
 import com.yolanda.nohttp.RequestMethod;
 import com.yolanda.nohttp.rest.Request;
 
@@ -31,6 +33,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 /**
  * Created by Administrator on 2016/3/22.
@@ -268,6 +271,8 @@ public class HttpHelper {
                     vitBitData.setMetric("person.posture.sitting");
                 }else if(sportRecords.get(i).getState().equals("113")){
                     vitBitData.setMetric("person.posture.standing");
+                }else if(sportRecords.get(i).getState().equals("0")){
+                    continue; //不上传0的数据
                 }
               /*  else if(sportRecords.get(i).getState().equals("0")){
                     vitBitData.setMetric("person.activeness.sedentary");
@@ -310,9 +315,13 @@ public class HttpHelper {
 
     //将起始时间加上s
     private static String format(String date){
-        Date d = TimeUtil.stringToDate(date,"yyyy-MM-dd HH:mm:ss");
+       String  date1 = date;
+        String s = com.example.android.bluetoothlegatt.utils.TimeZoneHelper.getLocalTimeFromUTC0("yyyy-MM-dd HH:mm:ss", date1);
+        MyLog.e("处理完后的时间","format+"+s);
+        Date d = TimeUtil.stringToDate(s,"yyyy-MM-dd HH:mm:ss");
         String dateStr = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(d);
         Date newdate = TimeUtil.stringToDate(dateStr,"yyyy-MM-dd'T'HH:mm:ssZ");
+        MyLog.e("处理完后的时间","format+"+dateStr);
         return dateStr;
     }
 }

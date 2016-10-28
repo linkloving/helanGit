@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.VitaBit.VitaBit.IntentFactory;
 import com.VitaBit.VitaBit.basic.toolbar.ToolBarActivity;
 import com.VitaBit.VitaBit.utils.ToolKits;
 import com.example.android.bluetoothlegatt.BLEProvider;
@@ -65,7 +66,7 @@ public class bundbandstep1 extends ToolBarActivity {
                 // 网络畅通的情况下才能绑定（否则无法完成从服务端拿到utc时间等问题）
                 if(ToolKits.isNetworkConnected(bundbandstep1.this))
                 {
-                    startActivityForResult(new Intent(bundbandstep1.this, bundbandstep2.class),REQUEST_CODE_BLE_LIST);
+                    startActivityForResult(IntentFactory.startActivityBandList(bundbandstep1.this),REQUEST_CODE_BLE_LIST);
                 }
                 else
                 {
