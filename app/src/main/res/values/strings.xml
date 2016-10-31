@@ -690,7 +690,7 @@
     <string name="bound_ble_list">Bluetooth Device List</string>
     <string name="bound_link_band">Linkloving band</string>
     <string name="bound_link_watch">Linkloving watch</string>
-    <string name="new_bound_step1">Step 1:Remove your tracker from the wristband and charge the device</string>
+    <string name="new_bound_step1">Place the tracker into the charger and pluy the cable into a USB power source</string>
     <string name="new_bound_step2">Step 2: Press "Next", find the same ID with the one on the back of the device in the Bluetooth Device List and press "Bund". When Bounding is successful, the device will vibrate once</string>
     <string name="new_bound_step3">Please unplug the charger!</string>
     <string name="bound_ble_refresh">Refresh</string>
@@ -701,7 +701,7 @@
     <string name="bound_illegal_address">Illegal device ID!</string>
     <string name="bound_illegal_address_msg">Illegal MAC ID!！</string>
     <string name="bound_title">Bund your Linkloving watch</string>
-    <string name="bound_title_band"> PAIR WRISTBAND </string>
+    <string name="bound_title_band"> PAIR TRACKER </string>
     <string name="bound_skip">Skip</string>
     <string name="portal_main_bound_failed_nocharge">Please charging by connecting the cable to a USB power source</string>
     <string name="portal_main_bound_failed_ble_dis">The bluetooth radio is not responding.  Please exit the App and go to your device Settings. Please turn off and on your bluetooth to reset the connection and try again.</string>
@@ -716,7 +716,7 @@
     <string name="bound_active_notice7">Press "Y" to bund the device。</string>
     <string name="bound_active_notice8">根据提示在手机蓝牙配对页面输入手表上的PIN码即可完成配对。</string>
     <string name="bound_scan">Step 3: Bund the device</string>
-    <string name="bound_scan_sqr">Cancel({0}S)</string>
+    <string name="bound_scan_sqr">Bunding will be canceled in({0}S)</string>
     <string name="bound_string">Bund</string>
     <string name="bound_dounding">Bunding....</string>
     <string name="bound_dounding_successful">Bund Successful</string>

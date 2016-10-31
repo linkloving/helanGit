@@ -1325,47 +1325,45 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                         final List<SportRecord> up_List = UserDeviceRecord.findHistoryWitchNoSync(PortalActivity.this, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUser_id() + "");
                         MyLog.e(TAG, "【NEW离线数据同步】一共查询出" + up_List.size() + "条数据");
                         //有数据才去算
+                        final ArrayList<SportRecord> dailyList = new ArrayList<>();
                         if (up_List.size() > 0) {
-                            final String startTime = up_List.get(0).getStart_time();
-                            String[] split = startTime.split(" ");
-                            String time = split[0];
-                            final String endTime = up_List.get(up_List.size() - 1).getStart_time();
-                            MyLog.e(TAG,"starttime"+startTime);
-                            CallServer.getRequestInstance().
-                                    add(PortalActivity.this, false, CommParams.HTTP_SUBMIT_DATA, HttpHelper.updataSportDate(PortalActivity.this, provider.getCurrentDeviceMac(), up_List, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUserBase().getThirdparty_access_token()), new HttpCallback<String>() {
-                                @Override
-                                public void onSucceed(int what, Response<String> response) {
-                                    PreferencesToolkits.setServerUpdateTime(PortalActivity.this);
-                                    MyLog.e(TAG, "【NEW离线数据同步】response:" + response.get());
-                                    long sychedNum = UserDeviceRecord.updateForSynced(PortalActivity.this, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUser_id() + "", startTime, endTime);
-                                    MyLog.d(TAG, "【NEW离线数据同步】本次共有" + sychedNum + "条运动数据已被标识为\"已同步\"！[" + startTime + "~" + endTime + "]");
-//                                    if (mScrollView.isRefreshing()) {
-//                                        String second_txt = MessageFormat.format(getString(R.string.refresh_data), obj);
-//                                        mScrollView.getHeaderLayout().getmHeaderText().setText(second_txt);
-//                                    }
+                            for (int i = 0; i < up_List.size()-1; i++) {
+                                final String startTime = up_List.get(i).getStart_time();
+                                String[] split = startTime.split(" ");
+                                String time = split[0];
+                                String start_time2 = up_List.get(i + 1).getStart_time();
+                                String[] split2 = start_time2.split(" ");
+                                String time2 = split2[0];
+                                MyLog.e(TAG,"time"+time+"_________________"+"time2   "+time2);
+                                if (time.equals(time2)&&i!=up_List.size()-2) {
+                                    MyLog.e(TAG,"if方法执行了");
+                                    MyLog.e(TAG,"i是"+i);
+                                    dailyList.add(up_List.get(i));
+                                }else {
+                                    MyLog.e(TAG,"else方法执行了");
+                                  final String  endtime = up_List.get(i).getStart_time();
+                                    CallServer.getRequestInstance().
+                                            add(PortalActivity.this, false, CommParams.HTTP_SUBMIT_DATA, HttpHelper.updataSportDate(PortalActivity.this, provider.getCurrentDeviceMac(), dailyList, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUserBase().getThirdparty_access_token()), new HttpCallback<String>() {
+                                                @Override
+                                                public void onSucceed(int what, Response<String> response) {
+                                                    PreferencesToolkits.setServerUpdateTime(PortalActivity.this);
+                                                    MyLog.e(TAG, "【NEW离线数据同步】response:" + response.get());
+                                                    MyLog.e(TAG,"starttime"+ up_List.get(0).getStart_time() +"___________"+"endtime"+endtime);
+                                                    long sychedNum = UserDeviceRecord.updateForSynced(PortalActivity.this, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUser_id() + "", up_List.get(0).getStart_time(), endtime);
+                                                    MyLog.d(TAG, "【NEW离线数据同步】本次共有" + sychedNum + "条运动数据已被标识为\"已同步\"！[" + startTime + "~" + endtime + "]");
+                                                }
+                                                @Override
+                                                public void onFailed(int what, String url, Object tag, CharSequence message, int responseCode, long networkMillis) {
+                                                    MyLog.e(TAG, "【NEW离线数据同步】 onFailed responseCode:" + responseCode + "message:" + message);
+                                                }
+                                            });
+                                    dailyList.clear();
+                                    dailyList.add(up_List.get(i));
                                 }
-
-                                @Override
-                                public void onFailed(int what, String url, Object tag, CharSequence message, int responseCode, long networkMillis) {
-                                    MyLog.e(TAG, "【NEW离线数据同步】 onFailed responseCode:" + responseCode + "message:" + message);
-                                }
-                            });
-//                            try {
-//                                HttpUtils.doPostAsyn(CommParams.SERVER_CONTROLLER_URL_HELAN+"measurement", HttpHelper.updataSportDate(provider.getCurrentDeviceMac(),up_List), new HttpUtils.CallBack() {
-//                                    @Override
-//                                    public void onRequestComplete(String result) {
-//                                        MyLog.e(TAG, "【NEW离线数据同步】服务端返回" + result);
-//                                        long sychedNum = UserDeviceRecord.updateForSynced(PortalActivity.this, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUser_id() + "", startTime, endTime);
-//                                        MyLog.d(TAG, "【NEW离线数据同步】本次共有" + sychedNum + "条运动数据已被标识为\"已同步\"！[" + startTime + "~" + endTime + "]");
-//                                    }
-//                                });
-//                            } catch (Exception e) {
-//                                e.printStackTrace();
-//                            }
+                            }
                         }
                         return null;
                     }
-
                     @Override
                     protected void onPostExecute(Object Object) {
                         super.onPostExecute(Object);

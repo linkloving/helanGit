@@ -803,7 +803,7 @@ public class UserDeviceRecord extends TableRoot
 
 		// 时间范围内的数据全部标识为“已同步”
 		String where = COLUMN_KEY_ACOUNT$UID+"='"+acountUidOfOwner+"' and "+COLUMN_START_TIME+">='"+startTime+"' and "+COLUMN_START_TIME+"<='"+endTime+"'";
-
+		MyLog.e("PortalActivity","updateForSynced执行了");
 		return super.update(TABLE_NAME, updateValues, where);
 	}
 

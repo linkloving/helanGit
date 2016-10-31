@@ -35,10 +35,9 @@
 
                 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="150dp"
+                    android:layout_height="250dp"
                     android:layout_marginTop="20dp"
-                    android:layout_weight="3"
                     android:background="@mipmap/bounded_step3_image" />
             </LinearLayout>
 
@@ -52,7 +51,8 @@
 
                 <Button
                     android:id="@+id/btncancle"
-                    android:background="@color/add_device_blue"
+                    android:background="@null"
+                    android:clickable="false"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
                     android:layout_marginTop="15dp"
@@ -60,9 +60,10 @@
                     android:drawablePadding="10dp"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
+                    android:textAllCaps="false"
                     android:text="@string/bound_scan_sqr"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/m00_font_size_28pt" />
+                    android:textColor="@color/add_device_blue"
+                    android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
 
