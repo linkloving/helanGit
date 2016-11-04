@@ -790,7 +790,7 @@
     <string name="portal_main_bounding">Bunding!Please pay attention to  the screen of Watch!</string>
     <string name="portal_main_unbound_msg">You have not bunded the device, please bund one first.</string>
     <string name="portal_main_battery_low"> Low Power </string>
-    <string name="portal_main_battery_low_msg">Battery low, please insert a new battery! </string>
+    <string name="portal_main_battery_low_msg">Battery low, please recharge your battery. </string>
     <string name="portal_main_battery_ble_timeout">Bluetooth scan timeout, please try again later.</string>
     <string name="portal_main_has_bound_drop">Device has been associated user ID ({0}) You can not bund the device again, please try again after the device unbundling!</string>
     <string name="portal_main_has_bound">Your account has been bound to the other mobile phone devices, this binding can not continue, please try again after landing!</string>
@@ -1129,6 +1129,20 @@
     <string name="chart_stand">STAND</string>
 
     <string name="step_title">Walking</string>
+    <string name="feedback">Feedback</string>
+    <string name="choosestart">Choose start time and end time</string>
+    <string name="starttime">Start time</string>
+    <string name="endtime">End time</string>
+    <string name="Describe">Describe your problem here.</string>
+<string name="Send">Send</string>
+
+
+
+
+
+
+
+
 
 
     <string name="portal_device_updatetime">Last update - tracker:</string>
