@@ -107,6 +107,9 @@
             android:label="@string/title_activity_long_sit"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar" />
+        <activity android:name=".logic.UI.main.datachatactivity.FeedbackActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar" />
 
         <activity
             android:name="com.VitaBit.VitaBit.logic.UI.device.handup.HandUpActivity"

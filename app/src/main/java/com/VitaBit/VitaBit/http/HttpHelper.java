@@ -1,10 +1,7 @@
 package com.VitaBit.VitaBit.http;
 
 import android.content.Context;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.nfc.Tag;
-import android.text.format.Time;
 
 import com.VitaBit.VitaBit.CommParams;
 import com.VitaBit.VitaBit.R;
@@ -12,28 +9,34 @@ import com.VitaBit.VitaBit.http.basic.MyJsonRequest;
 import com.VitaBit.VitaBit.http.data.ActionConst;
 import com.VitaBit.VitaBit.http.data.DataFromClientNew;
 import com.VitaBit.VitaBit.http.data.JobDispatchConst;
+import com.VitaBit.VitaBit.logic.UI.customerservice.serviceItem.Feedback;
+import com.VitaBit.VitaBit.logic.UI.main.PortalActivity;
 import com.VitaBit.VitaBit.logic.dto.SportRecordUploadDTO;
+import com.VitaBit.VitaBit.prefrences.PreferencesToolkits;
+import com.VitaBit.VitaBit.prefrences.devicebean.LocalInfoVO;
 import com.VitaBit.VitaBit.prefrences.devicebean.VitBitData;
+import com.VitaBit.VitaBit.prefrences.devicebean.FeedbackData;
+import com.VitaBit.VitaBit.utils.CommonUtils;
 import com.VitaBit.VitaBit.utils.EncrypSHA;
 import com.VitaBit.VitaBit.utils.LanguageHelper;
 import com.VitaBit.VitaBit.utils.PasswordEncode;
+import com.VitaBit.VitaBit.utils.ToolKits;
 import com.VitaBit.VitaBit.utils.logUtils.MyLog;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.linkloving.band.dto.SportRecord;
 import com.VitaBit.VitaBit.MyApplication;
 import com.linkloving.utils.TimeUtil;
-import com.linkloving.utils.TimeZoneHelper;
 import com.yolanda.nohttp.RequestMethod;
 import com.yolanda.nohttp.rest.Request;
 
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TimeZone;
 
 /**
  * Created by Administrator on 2016/3/22.
@@ -297,21 +300,50 @@ public class HttpHelper {
         httpsRequest.setRequestBody(JSON.toJSONString(vitBitDatas, SerializerFeature.DisableCircularReferenceDetect).getBytes());
         return httpsRequest;
     }
-    /**
-     * 获取版本号
-     * @return 当前应用的版本号
-     */
-   /* public String getVersion() {
-        try {
-            PackageManager manager = this.getPackageManager();
-            PackageInfo info = manager.getPackageInfo(this.getPackageName(), 0);
-            String version = info.versionName;
-            return  version;
-        } catch (Exception e) {
-            e.printStackTrace();
 
+    /**
+     * 获取getFeedback
+     */
+    public static Request<String> updataFeedbackDate(String feedback,String starttime,String endtime ,Context context, List<SportRecord> sportRecords) {
+        FeedbackData feedbackData = new FeedbackData();
+        feedbackData.setFeedback(feedback);
+        feedbackData.setStart(starttime);
+        feedbackData.setEnd(endtime);
+        String versionName = "1";
+        try {
+            versionName = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
         }
-    }*/
+        feedbackData.setApp_version(versionName);
+        LocalInfoVO vo = PreferencesToolkits.getLocalDeviceInfo(context);
+        if (!com.linkloving.utils.CommonUtils.isStringEmpty(vo.version)){
+            feedbackData.setTracker_version(vo.version);
+        }else{
+            String v = ToolKits.getStringbyId(context, R.string.bracelet_version);
+            feedbackData.setTracker_version(MessageFormat.format(v, "Unknow"));
+        }
+        feedbackData.setTracker_version(vo.version);
+        feedbackData.setTracker_model(MyApplication.getInstance(context).getLocalUserInfoProvider().getDeviceEntity().getModel_name());
+        ArrayList<FeedbackData.SamplesBean> samplesBeens = new ArrayList<>();
+        for(int i = 0;i<sportRecords.size();i++){
+            FeedbackData.SamplesBean samplesBean = new FeedbackData.SamplesBean();
+            samplesBean.setDuration(Integer.parseInt(sportRecords.get(i).getDuration()));
+            samplesBean.setStart_time(sportRecords.get(i).getStart_time());
+            samplesBean.setState(Integer.parseInt(sportRecords.get(i).getState()));
+            samplesBean.setSteps(Integer.parseInt(sportRecords.get(i).getStep()));
+            samplesBean.setDistance(Integer.parseInt(sportRecords.get(i).getDistance()));
+            samplesBeens.add(samplesBean);
+        }
+        feedbackData.setSamples(samplesBeens);
+        MyJsonRequest httpsRequest = new MyJsonRequest("https://pr-vb-ew-app-api-staging.azurewebsites.net:443/v1/"+"feedback");
+        httpsRequest.addHeader("User-Agent",versionName);
+        httpsRequest.addHeader("Authorization",MyApplication.getInstance(context).getLocalUserInfoProvider().getUserBase().getThirdparty_access_token());
+        MyLog.e("http1helper","httpsRequest.toString()"+httpsRequest.toString());
+        MyLog.e("http1helper","data："+JSON.toJSONString(feedbackData, SerializerFeature.DisableCircularReferenceDetect));
+        httpsRequest.setRequestBody(JSON.toJSONString(feedbackData, SerializerFeature.DisableCircularReferenceDetect).getBytes());
+        return httpsRequest;
+    }
 
     //将起始时间加上s
     private static String format(String date){

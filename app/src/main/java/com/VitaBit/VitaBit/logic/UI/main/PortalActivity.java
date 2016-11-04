@@ -87,10 +87,12 @@ import com.VitaBit.VitaBit.utils.sportUtils.SportDataHelper;
 import com.VitaBit.VitaBit.utils.sportUtils.TimeUtils;
 import com.linkloving.utils.TimeZoneHelper;
 import com.linkloving.utils._Utils;
+import com.yolanda.nohttp.Logger;
 import com.yolanda.nohttp.rest.Response;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import java.text.MessageFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -104,6 +106,7 @@ import butterknife.OnClick;
 public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter.OnRecyclerViewListener {
 
     private SimpleDateFormat sdf = new SimpleDateFormat(ToolKits.DATE_FORMAT_YYYY_MM_DD);
+    private SimpleDateFormat sdfHMS = new SimpleDateFormat(ToolKits.DATE_FORMAT_YYYY_MM_DD_HH_MM_SS);
     private static final String TAG = PortalActivity.class.getSimpleName();
     private static final int REQUSET_FOR_PERSONAL = 1;
     private static final int LOW_BATTERY = 1;
@@ -933,7 +936,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
         text_Sit.setText(sittime + getResources().getString(com.VitaBit.VitaBit.R.string.space) + getResources().getString(com.VitaBit.VitaBit.R.string.unit_min));
         //  ext_Cal= (TextView) findViewById(R.id.text_cal);
         text_stand.setText(standtime + getResources().getString(com.VitaBit.VitaBit.R.string.space) + getResources().getString(com.VitaBit.VitaBit.R.string.unit_min));
-
         int step_percent;
         if (step_goal == 0) {
             step_percent = 0;
@@ -1318,7 +1320,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                     protected void onPreExecute() {
                         super.onPreExecute();
                     }
-
                     @Override
                     protected Object doInBackground(Object... params) {
                         // 看看数据库中有多少未同步（到服务端的数据）
@@ -1326,20 +1327,34 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                         MyLog.e(TAG, "【NEW离线数据同步】一共查询出" + up_List.size() + "条数据");
                         //有数据才去算
                         final ArrayList<SportRecord> dailyList = new ArrayList<>();
+                        int startIndex= 0 ;
                         if (up_List.size() > 0) {
-                            for (int i = 0; i < up_List.size()-1; i++) {
-                                final String startTime = up_List.get(i).getStart_time();
-                                String[] split = startTime.split(" ");
-                                String time = split[0];
-                                String start_time2 = up_List.get(i + 1).getStart_time();
-                                String[] split2 = start_time2.split(" ");
-                                String time2 = split2[0];
-                                MyLog.e(TAG,"time"+time+"_________________"+"time2   "+time2);
-                                if (time.equals(time2)&&i!=up_List.size()-2) {
+                            for (int i = 0; i < up_List.size(); i++) {
+                                final String startTime = up_List.get(startIndex).getStart_time();
+                                Date parse = null;
+                                try {
+                                    parse = sdfHMS.parse(startTime);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+//                                指针数据的开始时间
+                                final long time1 = parse.getTime();
+                                String start_time2 = up_List.get(i).getStart_time();
+                                Date parse1 = null ;
+                                try {
+                                    parse1= sdfHMS.parse(start_time2);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+//                                当前数据的开始时间
+                                long time2 = parse1.getTime();
+                                MyLog.e(TAG,"time1"+ startTime +"_________________"+"time2   "+start_time2);
+                                if ((time2-time1)<60000*10&&i!=up_List.size()-1) {
                                     MyLog.e(TAG,"if方法执行了");
                                     MyLog.e(TAG,"i是"+i);
                                     dailyList.add(up_List.get(i));
                                 }else {
+                                    startIndex = i ;
                                     MyLog.e(TAG,"else方法执行了");
                                   final String  endtime = up_List.get(i).getStart_time();
                                     CallServer.getRequestInstance().
@@ -1348,7 +1363,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                                                 public void onSucceed(int what, Response<String> response) {
                                                     PreferencesToolkits.setServerUpdateTime(PortalActivity.this);
                                                     MyLog.e(TAG, "【NEW离线数据同步】response:" + response.get());
-                                                    MyLog.e(TAG,"starttime"+ up_List.get(0).getStart_time() +"___________"+"endtime"+endtime);
+                                                    MyLog.e(TAG,"starttime"+ startTime+"___________"+"endtime"+endtime);
                                                     long sychedNum = UserDeviceRecord.updateForSynced(PortalActivity.this, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUser_id() + "", up_List.get(0).getStart_time(), endtime);
                                                     MyLog.d(TAG, "【NEW离线数据同步】本次共有" + sychedNum + "条运动数据已被标识为\"已同步\"！[" + startTime + "~" + endtime + "]");
                                                 }
@@ -1370,6 +1385,21 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                     }
                 }.execute();
             }
+          /*  ArrayList<SportRecord> historyChart = UserDeviceRecord.findHistoryChart(PortalActivity.this, String.valueOf(userEntity.getUser_id()), "2016-10-31 00:00:00", "2016-10-31 23:59:59", false);
+            CallServer.getRequestInstance().add(PortalActivity.this, false, CommParams.HTTP_SUBMIT_FEEDBACKDATA, HttpHelper.updataFeedbackDate("反馈","2016-10-31 00:00:00 +0000","2016-10-31 23:59:59 +0000",PortalActivity.this
+            ,historyChart), new HttpCallback<String>() {
+                @Override
+                public void onFailed(int what, String url, Object tag, CharSequence message, int responseCode, long networkMillis) {
+                        MyLog.e(TAG,what+"-------------feedback"+"failed");
+                       MyLog.e(TAG,message.toString()+"--------------responseCode---"+responseCode);
+                }
+                @Override
+                public void onSucceed(int what, Response<String> response) {
+                    MyLog.e(TAG,what+"-------------feedback"+"success"+response.toString());
+                    Logger.e(response.toString());
+                }
+            });*/
+
         }
 
         /**********

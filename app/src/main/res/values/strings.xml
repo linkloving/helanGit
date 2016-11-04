@@ -473,8 +473,6 @@
     <string name="main_more_QQ">Service QQ</string>
     <string name="main_more_QQ_copy">QQ Number has copied!</string>
     <string name="main_more_app">Please download this app!</string>
-    <string name="main_more_WX">微信公众号</string>
-    <string name="main_more_tiaozhuan">跳转</string>
     <string name="portal_main_isbounding">Bundling...</string>
     <string name="main_more_from_qq_login">From Tencent QQ</string>
     <string name="main_more_from_wx_login">From WeiXin</string>
@@ -495,9 +493,6 @@
     <string name="user_info_what_s_up_enter_hint">Say something...</string>
     <string name="user_info_check_child">Home accounts</string>
     <string name="user_info_child_title">Sub account list</string>
-    <string name="user_info_child_item_not_change">无法切换账号</string>
-    <string name="user_info_child_item_not_change_msg">当前正在使用中的账号无需切换。</string>
-    <string name="user_info_child_item_not_delete_msg">当前正在使用中的账号无法删除.</string>
     <string name="user_info_child_item_delete_msg">Are you sure to delete {0}?</string>
     <string name="user_info_child_add_title">Add account</string>
     <string name="user_info_child_switch">Switch account</string>
@@ -835,12 +830,6 @@
     <string name="detail_sport_data_rs">Go to bed</string>
     <string name="detail_sport_data_qc">Get up</string>
     <string name="detail_sport_data_content_reading">Loading...</string>
-    <string name="detail_sport_equivalent">相当于</string>
-    <string name="detail_sport_qpd">圈跑道</string>
-    <string name="detail_sport_data_bkl">杯可乐</string>
-    <string name="detail_sport_data_npl">您跑了</string>
-    <string name="detail_sport_data_nsl">您睡了</string>
-    <string name="detail_sport_data_run_time">跑步用时</string>
     <string name="common_distance_unit_metres">"meter "</string>
     <string name="detail_sport_data_sum_main_walk">Walk</string>
     <string name="detail_sport_data_sum_main_run">Run</string>
@@ -1135,14 +1124,6 @@
     <string name="endtime">End time</string>
     <string name="Describe">Describe your problem here.</string>
 <string name="Send">Send</string>
-
-
-
-
-
-
-
-
 
 
     <string name="portal_device_updatetime">Last update - tracker:</string>

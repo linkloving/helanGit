@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.VitaBit.VitaBit.logic.UI.main.datachatactivity.FeedbackActivity">
+
+
+
+    <TextView
+        android:id="@+id/Main_tvSelected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/Main_pvLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical">
+
+        <com.VitaBit.VitaBit.logic.UI.main.datachatactivity.ViewUtils.widget.PickTimeView
+            android:id="@+id/pickTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible" />
+
+        <com.VitaBit.VitaBit.logic.UI.main.datachatactivity.ViewUtils.widget.PickTimeView
+            android:id="@+id/pickDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <com.VitaBit.VitaBit.logic.UI.main.datachatactivity.ViewUtils.widget.PickTimeView
+            android:id="@+id/pickValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <com.VitaBit.VitaBit.logic.UI.main.datachatactivity.ViewUtils.widget.PickValueView
+            android:id="@+id/pickValues"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <com.VitaBit.VitaBit.logic.UI.main.datachatactivity.ViewUtils.widget.PickValueView
+            android:id="@+id/pickString"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>

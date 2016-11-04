@@ -32,6 +32,7 @@ public class CommParams {
     public final static int REQUEST_GET_GROUP = 33;
     public final static int HTTP_SYNC_DATA = 30;
     public final static int HTTP_SUBMIT_DATA = 31;
+    public final static int HTTP_SUBMIT_FEEDBACKDATA = 32;
     public final static int HTTP_SUBMIT_BODYDATA = 80;
     public final static int HTTP_UNBUND = 40;
     public final static int HTTP_DOWN_USERENETTY = 99;

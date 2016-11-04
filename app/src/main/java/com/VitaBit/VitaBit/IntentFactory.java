@@ -38,6 +38,7 @@ import com.VitaBit.VitaBit.logic.UI.main.BundTypeActivity;
 import com.VitaBit.VitaBit.logic.UI.main.PortalActivity;
 import com.VitaBit.VitaBit.logic.UI.main.bundband.BandListActivity;
 import com.VitaBit.VitaBit.logic.UI.main.bundband.BundBandActivity;
+import com.VitaBit.VitaBit.logic.UI.main.datachatactivity.FeedbackActivity;
 import com.VitaBit.VitaBit.logic.UI.main.datachatactivity.SitDataActivity;
 import com.VitaBit.VitaBit.logic.UI.main.datachatactivity.StandDataActivity;
 import com.VitaBit.VitaBit.logic.UI.main.datachatactivity.StepDataActivity;
@@ -291,6 +292,10 @@ public class IntentFactory {
     public static Intent cteate_StepDataActivityIntent(Activity portalActivity) {
         Intent intent = new Intent(portalActivity, StepDataActivity.class);
         return intent;
+    }
+    public static void startFeedbackAcitivy(Context context){
+        Intent intent = new Intent(context, FeedbackActivity.class);
+        context.startActivity(intent);
     }
 
 

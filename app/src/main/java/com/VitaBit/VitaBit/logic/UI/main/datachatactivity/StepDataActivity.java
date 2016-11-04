@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -19,7 +20,9 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.VitaBit.VitaBit.IntentFactory;
 import com.VitaBit.VitaBit.MyApplication;
+import com.VitaBit.VitaBit.R;
 import com.VitaBit.VitaBit.basic.toolbar.ToolBarActivity;
 import com.VitaBit.VitaBit.db.summary.DaySynopicTable;
 import com.VitaBit.VitaBit.logic.UI.main.datachatactivity.ViewUtils.ViewUtils;
@@ -111,6 +114,16 @@ public class StepDataActivity extends ToolBarActivity implements View.OnClickLis
         progressDialog.setMessage(getString(com.VitaBit.VitaBit.R.string.summarizing_data));
         progressDialog.setCanceledOnTouchOutside(false);
         initTitle();//刚刚进页面的时候初始化那三个字段
+        Button rightButton = (Button) findViewById(R.id.id_txt_btn);
+        rightButton.setText(R.string.feedback);
+        rightButton.setVisibility(View.VISIBLE);
+        rightButton.setTextColor(Color.WHITE);
+        rightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentFactory.startFeedbackAcitivy(StepDataActivity.this);
+            }
+        });
     }
 
     @Override

@@ -21,6 +21,7 @@ import com.VitaBit.VitaBit.prefrences.PreferencesToolkits;
 import com.VitaBit.VitaBit.utils.logUtils.MyLog;
 import com.VitaBit.VitaBit.utils.manager.OsUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.yolanda.nohttp.Logger;
 import com.yolanda.nohttp.NoHttp;
 
 import java.util.List;
@@ -150,7 +151,7 @@ public class MyApplication extends Application{
 
                 /**不必为每一次HTTP请求都创建一个RequestQueue对象，推荐在application中初始化*/
 				NoHttp.initialize(MyApplication.this);
-//                Logger.setDebug(true);
+                Logger.setDebug(true);
                 ImageLoader.getInstance().init(CommParams.getImgConfig(self, pic_const));
                 this.registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
                     @Override
