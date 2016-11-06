@@ -52,6 +52,7 @@ import com.VitaBit.VitaBit.logic.UI.main.bundband.BandListActivity;
 import com.VitaBit.VitaBit.logic.UI.main.bundband.BandListActivity3;
 import com.VitaBit.VitaBit.logic.UI.main.bundband.bundbandstep1;
 import com.VitaBit.VitaBit.logic.UI.main.materialmenu.MenuNewAdapter;
+import com.VitaBit.VitaBit.logic.UI.main.update.UpdateClientAsyncTask;
 import com.VitaBit.VitaBit.logic.dto.Profile;
 import com.VitaBit.VitaBit.logic.dto.UserEntity;
 import com.VitaBit.VitaBit.prefrences.PreferencesToolkits;
@@ -338,6 +339,22 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                 }
             }
         });
+        initCheckUpdate();
+    }
+
+    private void initCheckUpdate() {
+        if (ToolKits.isStoreVersion(PortalActivity.this)){
+
+        }else {
+            new UpdateClientAsyncTask(PortalActivity.this){
+
+                @Override
+                protected void relogin() {
+
+                }
+            };
+        }
+
     }
 
     private void checkBle() {
@@ -1349,6 +1366,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
 //                                当前数据的开始时间
                                 long time2 = parse1.getTime();
                                 MyLog.e(TAG,"time1"+ startTime +"_________________"+"time2   "+start_time2);
+                                //如果小于10分钟的话就去提交,不然就不提交.
                                 if ((time2-time1)<60000*10&&i!=up_List.size()-1) {
                                     MyLog.e(TAG,"if方法执行了");
                                     MyLog.e(TAG,"i是"+i);

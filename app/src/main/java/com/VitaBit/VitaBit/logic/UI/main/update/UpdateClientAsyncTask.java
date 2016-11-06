@@ -38,7 +38,10 @@ public abstract class UpdateClientAsyncTask extends AsyncTask<Object, Object, Ob
 	protected Object doInBackground(Object... parems)
 	{
 			String baseUrl = "http://fir.im/api/v2/app/version/%s?token=%s";
-			String checkUpdateUrl = String.format(baseUrl, "572b1b1bf2fc425631000023", "e340c54edf0d774794784c577eecf255");
+			String checkUpdateUrl = String.format(baseUrl, "58169af5ca87a8536e00084a", "f2a3d1973878abb5ba921a0176a5c1fb");
+
+//		String baseUrl = "http://fir.im/api/v2/app/version/%s?token=%s";
+//		String checkUpdateUrl = String.format(baseUrl, "572b1b1bf2fc425631000023", "e340c54edf0d774794784c577eecf255");
 			MyJsonRequest httpsRequest = new MyJsonRequest(checkUpdateUrl, RequestMethod.GET);
 
 			Log.e(TAG, "请求网络的地址:"+checkUpdateUrl);

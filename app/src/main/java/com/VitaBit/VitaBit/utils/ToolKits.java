@@ -19,6 +19,7 @@ import android.net.ParseException;
 import android.net.Uri;
 import android.os.Build;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -982,6 +983,25 @@ public class ToolKits
 			}
 		}
 		return false;
+	}
+
+
+	/***
+	 * 判断是否是从googel play上面下载.
+	 * @param context
+	 * @return
+     */
+	public static boolean isStoreVersion(Context context) {
+		boolean result = false;
+
+		try {
+			String installer = context.getPackageManager()
+					.getInstallerPackageName(context.getPackageName());
+			result = !TextUtils.isEmpty(installer);
+		} catch (Throwable e) {
+		}
+
+		return result;
 	}
 
 
