@@ -1106,7 +1106,10 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                 userEntity.getUserBase().setNickname(profile.getFirst_name() + " " + profile.getLast_name());
                 userEntity.getUserBase().setAvatar_color(profile.getAvatar_color());
             }
-
+//                        设置userId
+            if (!CommonUtils.isStringEmpty(profile.getUser_id())){
+                userEntity.getUserBase().setUser_id(Integer.parseInt(profile.getUser_id()));
+            }
             //设置性别
             if (!CommonUtils.isStringEmpty(profile.getGender())) {
                 if ("male".equals(profile.getGender())) {

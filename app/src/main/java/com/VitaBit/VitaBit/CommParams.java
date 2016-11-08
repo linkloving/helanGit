@@ -91,6 +91,7 @@ public class CommParams {
     /** APP的服务器根地址)*/
     public final static String APP_ROOT_URL_HELAN ="https://pr-vb-ew-app-api.azurewebsites.net:443/";
     public final static String SERVER_CONTROLLER_URL_HELAN = APP_ROOT_URL_HELAN+"v1/";
+    public final static String SERVER_HELAN_FOR_TEST ="https://pr-vb-ew-app-api-staging.azurewebsites.net:443/v1/";
     /**用户上传头像的*/
     public final static String AVATAR_UPLOAD_CONTROLLER_URL_ROOT ="http://"+APP_ROOT_URL+"UserAvatarUploadController";
     /** 用户头像下载Servlet地址*/

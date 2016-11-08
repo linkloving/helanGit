@@ -186,7 +186,8 @@ public class HttpHelper {
      */
     public static Request<String> getProfile(String token) {
         MyLog.e("getProfile",token);
-        MyJsonRequest httpsRequest = new MyJsonRequest(CommParams.SERVER_CONTROLLER_URL_HELAN+"profile", RequestMethod.GET);
+//        MyJsonRequest httpsRequest = new MyJsonRequest(CommParams.SERVER_CONTROLLER_URL_HELAN+"profile", RequestMethod.GET);
+        MyJsonRequest httpsRequest = new MyJsonRequest(CommParams.SERVER_HELAN_FOR_TEST+"profile", RequestMethod.GET);
         httpsRequest.addHeader("Authorization",token);
         return httpsRequest;
     }
