@@ -19,8 +19,6 @@ import com.VitaBit.VitaBit.logic.UI.friend.CommentActivity;
 import com.VitaBit.VitaBit.logic.UI.friend.FriendActivity;
 import com.VitaBit.VitaBit.logic.UI.goal.SportGoalActivity;
 import com.VitaBit.VitaBit.logic.UI.help.HelpActivity;
-import com.VitaBit.VitaBit.logic.UI.launch.LoginFromPhoneActivity;
-import com.VitaBit.VitaBit.logic.UI.launch.LoginPageActivity;
 import com.VitaBit.VitaBit.logic.UI.launch.LoginWebActivity;
 import com.VitaBit.VitaBit.logic.UI.launch.codeLogin.CodeActivity;
 import com.VitaBit.VitaBit.logic.UI.launch.dto.UserRegisterDTO;
@@ -207,13 +205,13 @@ public class IntentFactory {
 
     }
 
-    public static void start_LoginPage_Activity(Activity activity) {
+/*    public static void start_LoginPage_Activity(Activity activity) {
 
         Intent intent = new Intent(activity, LoginFromPhoneActivity.class);
 
         activity.startActivity(intent);
 
-    }
+    }*/
 
     public static void start_RegisterActivity_Activity(Activity activity) {
 
@@ -317,11 +315,11 @@ public class IntentFactory {
 //        return intent;
 //    }
 
-    //登陆主界面
+/*    //登陆主界面
     public static Intent createLoginPageActivity(Activity appStartActivity) {
         Intent intent = new Intent(appStartActivity, LoginPageActivity.class);
         return intent;
-    }
+    }*/
 //好友信息界面
     /*public static Intent create_FriendInfoActivity(Context context) {
         Intent intent = new Intent(context, FriendInfoActivity.class);
@@ -385,7 +383,7 @@ public class IntentFactory {
 
     public static void startBundTypeActivity(Activity activity) {
         Intent intent = new Intent(activity, BundTypeActivity.class);
-        activity.startActivityForResult(intent,CommParams.REQUEST_CODE_BOUND);
+        activity.startActivityForResult(intent, CommParams.REQUEST_CODE_BOUND);
     }
 
     public static Intent create_Password_ActivityIntent(RegisterPhoneActivity registerPhoneActivity) {

@@ -13,8 +13,8 @@ android {
         applicationId "com.VitaBit.VitaBit"
         minSdkVersion 18
         targetSdkVersion 23
-        versionCode 9
-        versionName "1.0.9"
+        versionCode 12
+        versionName "1.1.2"
     }
 
     packagingOptions {  // 因为多个 jar 包里包含了同样的文件（NOTICE.txt），导致打包时因为担心相互覆盖问题而提示出错。
@@ -84,7 +84,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     compile name: 'SMSSDK-2.1.2', ext: 'aar'
     compile name: 'PullToRefreshLibrary', ext: 'aar'
-    compile project(':onkeyshare')
     compile project(':ViewPagerIndicator')
     compile files('libs/fastjson-1.1.35.jar')
     compile files('libs/mta-sdk-1.0.0.jar')

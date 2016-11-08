@@ -24,6 +24,7 @@ import com.VitaBit.VitaBit.utils.ToolKits;
 import com.VitaBit.VitaBit.utils.logUtils.MyLog;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.example.android.bluetoothlegatt.utils.TimeZoneHelper;
 import com.linkloving.band.dto.SportRecord;
 import com.VitaBit.VitaBit.MyApplication;
 import com.linkloving.utils.TimeUtil;
@@ -348,11 +349,10 @@ public class HttpHelper {
     //将起始时间加上s
     private static String format(String date){
        String  date1 = date;
-        String s = com.example.android.bluetoothlegatt.utils.TimeZoneHelper.getLocalTimeFromUTC0("yyyy-MM-dd HH:mm:ss", date1);
+        String s = TimeZoneHelper.getLocalTimeFromUTC0("yyyy-MM-dd HH:mm:ss", date1);
         MyLog.e("处理完后的时间","format+"+s);
         Date d = TimeUtil.stringToDate(s,"yyyy-MM-dd HH:mm:ss");
         String dateStr = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(d);
-        Date newdate = TimeUtil.stringToDate(dateStr,"yyyy-MM-dd'T'HH:mm:ssZ");
         MyLog.e("处理完后的时间","format+"+dateStr);
         return dateStr;
     }

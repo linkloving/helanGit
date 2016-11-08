@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.VitaBit.VitaBit.http.basic.CallServer;
 import com.VitaBit.VitaBit.http.basic.HttpCallback;
+import com.VitaBit.VitaBit.utils.logUtils.MyLog;
 import com.VitaBit.VitaBit.utils.manager.AsyncTaskManger;
 import com.VitaBit.VitaBit.http.basic.MyJsonRequest;
 import com.yolanda.nohttp.RequestMethod;
@@ -30,18 +31,22 @@ public abstract class UpdateClientAsyncTask extends AsyncTask<Object, Object, Ob
 	private Activity activity = null;
 	public UpdateClientAsyncTask(Activity activity)
 	{
+		MyLog.e(TAG,"UpdateClientAsyncTask这里的方法执行了");
 		this.activity = activity;
-		AsyncTaskManger.getAsyncTaskManger().addAsyncTask(this);
+	/*	AsyncTaskManger.getAsyncTaskManger().addAsyncTask(this);*/
+	}
+
+	@Override
+	protected void onPreExecute() {
+		super.onPreExecute();
 	}
 
 	@Override
 	protected Object doInBackground(Object... parems)
 	{
+		MyLog.e(TAG,"http://fir.im/api/v2/app/version/58169af5ca87a8536e00084a?token=f2a3d1973878abb5ba921a0176a5c1fb");
 			String baseUrl = "http://fir.im/api/v2/app/version/%s?token=%s";
 			String checkUpdateUrl = String.format(baseUrl, "58169af5ca87a8536e00084a", "f2a3d1973878abb5ba921a0176a5c1fb");
-
-//		String baseUrl = "http://fir.im/api/v2/app/version/%s?token=%s";
-//		String checkUpdateUrl = String.format(baseUrl, "572b1b1bf2fc425631000023", "e340c54edf0d774794784c577eecf255");
 			MyJsonRequest httpsRequest = new MyJsonRequest(checkUpdateUrl, RequestMethod.GET);
 
 			Log.e(TAG, "请求网络的地址:"+checkUpdateUrl);

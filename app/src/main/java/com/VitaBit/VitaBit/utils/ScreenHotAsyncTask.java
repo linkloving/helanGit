@@ -37,8 +37,8 @@ public class ScreenHotAsyncTask extends AsyncTask<View, String, String> {
         return filePath;
     }
 
-    @Override
+ /*   @Override
     protected void onPostExecute(String result) {
         ShareUtil.showShare(result, activity);
-    }
+    }*/
 }

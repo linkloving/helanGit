@@ -171,7 +171,7 @@ public class UserDeviceRecord extends TableRoot {
                 mCursor.close();
             }
         }
-        for (int i = 0; i < cpList.size(); i++) {
+       /* for (int i = 0; i < cpList.size(); i++) {
             //如果状态值是127(坐)就把之前1小时内连续的112数据的state改为0
             if (cpList.get(i).getState().equals(Integer.toString(127))) {
                 long timestate = 0;
@@ -224,7 +224,7 @@ public class UserDeviceRecord extends TableRoot {
                     }
                 } while ((timestate - timeStart) < 600000);
             }
-        }
+        }*/
         return cpList;
     }
 

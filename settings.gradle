@@ -1,3 +1,3 @@
 include ':app', ':linkloving_band'
-include ':ViewPagerIndicator', ':onkeyshare',':linkloving_ble4.0_lib'
+include ':ViewPagerIndicator', ':linkloving_ble4.0_lib'
 //, ':LntsdkResourceFile'

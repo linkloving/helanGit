@@ -339,20 +339,23 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                 }
             }
         });
-        initCheckUpdate();
+//        initCheckUpdate();
     }
 
     private void initCheckUpdate() {
+        MyLog.e(TAG,"initCheckUpdate执行了");
         if (ToolKits.isStoreVersion(PortalActivity.this)){
-
+            MyLog.e(TAG,"initCheckUpdate执行了if");
+            MyLog.e(TAG,"initCheckUpdate"+ToolKits.isStoreVersion(PortalActivity.this));
         }else {
+            MyLog.e(TAG,"initCheckUpdate执行了else");
             new UpdateClientAsyncTask(PortalActivity.this){
 
                 @Override
                 protected void relogin() {
 
                 }
-            };
+            }.execute();
         }
 
     }
@@ -419,7 +422,7 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                     // 启动超时处理handler
 //                    mScrollView.post(new Runnable() {
 //                        @Override
-//                        public void run() {
+//                        public void run()
 //                            Message ms = new Message();
 //                            mScrollView.sendMessageDelayed(ms, 10000);
 //                        }
@@ -689,8 +692,8 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
             MyLog.i(TAG, "获得的UserEntity是空的");
             return;
         }
-        MyLog.i(TAG, "获得的UserEntity的名字=" + u.getUserBase().getFirst_name() + u.getUserBase().getLast_name());
-        MyLog.i(TAG, "获得的UserEntity的颜色=" + u.getUserBase().getAvatar_color());
+        MyLog.e(TAG, "获得的UserEntity的名字=" + u.getUserBase().getFirst_name() + u.getUserBase().getLast_name());
+        MyLog.e(TAG, "获得的UserEntity的颜色=" + u.getUserBase().getAvatar_color());
         user_name.setText(u.getUserBase().getNickname());
 //        Bitmap bitmap = Bitmap.createBitmap(220,220,Bitmap.Config.ARGB_8888);
         user_head_layout.setM_borderColor(android.graphics.Color.parseColor(u.getUserBase().getAvatar_color()));
@@ -1343,11 +1346,10 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                         final List<SportRecord> up_List = UserDeviceRecord.findHistoryWitchNoSync(PortalActivity.this, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUser_id() + "");
                         MyLog.e(TAG, "【NEW离线数据同步】一共查询出" + up_List.size() + "条数据");
                         //有数据才去算
-                        final ArrayList<SportRecord> dailyList = new ArrayList<>();
-                        int startIndex= 0 ;
                         if (up_List.size() > 0) {
-                            for (int i = 0; i < up_List.size(); i++) {
-                                final String startTime = up_List.get(startIndex).getStart_time();
+                            final ArrayList<SportRecord> dailyList = new ArrayList<>();
+                              for (int i = 0; i < up_List.size(); i++) {
+                                final String startTime = up_List.get(0).getStart_time();
                                 Date parse = null;
                                 try {
                                     parse = sdfHMS.parse(startTime);
@@ -1356,23 +1358,44 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                                 }
 //                                指针数据的开始时间
                                 final long time1 = parse.getTime();
-                                String start_time2 = up_List.get(i).getStart_time();
+                                String indexITime = up_List.get(i).getStart_time();
                                 Date parse1 = null ;
                                 try {
-                                    parse1= sdfHMS.parse(start_time2);
+                                    parse1= sdfHMS.parse(indexITime);
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
 //                                当前数据的开始时间
                                 long time2 = parse1.getTime();
-                                MyLog.e(TAG,"time1"+ startTime +"_________________"+"time2   "+start_time2);
+                                MyLog.e(TAG,"time1"+ startTime +"_________________"+"time2   "+indexITime);
                                 //如果小于10分钟的话就去提交,不然就不提交.
-                                if ((time2-time1)<60000*10&&i!=up_List.size()-1) {
+//                                if ((time2-time1)<60000*10&&i!=up_List.size()-1) {
+                                if ((time2-time1)<60000*10) {
                                     MyLog.e(TAG,"if方法执行了");
                                     MyLog.e(TAG,"i是"+i);
                                     dailyList.add(up_List.get(i));
+//                                    如果是最后一条,直接把这些数据上传.
+                                    if (i==up_List.size()-1){
+                                        MyLog.e(TAG,"数据里面最后一条数据上传了");
+                                        final String  endtime = up_List.get(i).getStart_time();
+                                        CallServer.getRequestInstance().
+                                                add(PortalActivity.this, false, CommParams.HTTP_SUBMIT_DATA, HttpHelper.updataSportDate(PortalActivity.this, provider.getCurrentDeviceMac(), dailyList, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUserBase().getThirdparty_access_token()), new HttpCallback<String>() {
+                                                    @Override
+                                                    public void onSucceed(int what, Response<String> response) {
+                                                        PreferencesToolkits.setServerUpdateTime(PortalActivity.this);
+                                                        MyLog.e(TAG, "【NEW离线数据同步】response:" + response.get());
+                                                        MyLog.e(TAG,"starttime"+ startTime+"___________"+"endtime"+endtime);
+                                                        long sychedNum = UserDeviceRecord.updateForSynced(PortalActivity.this, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUser_id() + "", startTime, endtime);
+                                                        MyLog.d(TAG, "【NEW离线数据同步】本次共有" + sychedNum + "条运动数据已被标识为\"已同步\"！[" + startTime + "~" + endtime + "]");
+                                                        updateFor_handleDataEnd();
+                                                    }
+                                                    @Override
+                                                    public void onFailed(int what, String url, Object tag, CharSequence message, int responseCode, long networkMillis) {
+                                                        MyLog.e(TAG, "【NEW离线数据同步】 onFailed responseCode:" + responseCode + "message:" + message);
+                                                    }
+                                                });
+                                    }
                                 }else {
-                                    startIndex = i ;
                                     MyLog.e(TAG,"else方法执行了");
                                   final String  endtime = up_List.get(i).getStart_time();
                                     CallServer.getRequestInstance().
@@ -1384,14 +1407,13 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                                                     MyLog.e(TAG,"starttime"+ startTime+"___________"+"endtime"+endtime);
                                                     long sychedNum = UserDeviceRecord.updateForSynced(PortalActivity.this, MyApplication.getInstance(PortalActivity.this).getLocalUserInfoProvider().getUser_id() + "", up_List.get(0).getStart_time(), endtime);
                                                     MyLog.d(TAG, "【NEW离线数据同步】本次共有" + sychedNum + "条运动数据已被标识为\"已同步\"！[" + startTime + "~" + endtime + "]");
+                                                    updateFor_handleDataEnd();
                                                 }
                                                 @Override
                                                 public void onFailed(int what, String url, Object tag, CharSequence message, int responseCode, long networkMillis) {
                                                     MyLog.e(TAG, "【NEW离线数据同步】 onFailed responseCode:" + responseCode + "message:" + message);
                                                 }
                                             });
-                                    dailyList.clear();
-                                    dailyList.add(up_List.get(i));
                                 }
                             }
                         }
