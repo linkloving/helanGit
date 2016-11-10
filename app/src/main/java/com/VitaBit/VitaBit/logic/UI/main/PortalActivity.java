@@ -1372,7 +1372,6 @@ public class PortalActivity extends AutoLayoutActivity implements MenuNewAdapter
                                 long time2 = parse1.getTime();
                                 MyLog.e(TAG,"time1"+ startTime +"_________________"+"time2   "+indexITime);
                                 //如果小于10分钟的话就去提交,不然就不提交.
-//                                if ((time2-time1)<60000*10&&i!=up_List.size()-1) {
                                 if ((time2-time1)<60000*10) {
                                     MyLog.e(TAG,"if方法执行了");
                                     MyLog.e(TAG,"i是"+i);
